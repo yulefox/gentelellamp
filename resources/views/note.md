@@ -27,14 +27,38 @@ Node 依赖项存在于 `package.json` 文件中：
 
 如果使用 elixir 的 `browserify` 遇到异常，参照该 [issue](https://github.com/laravel/elixir/issues/354)。
 
-    npm install babel-preset-es2015 --save
-    npm install babel-preset-react --save
-
 PHP 依赖项存在于 `composer.json` 文件中：
 
 * [graham-campbell/markdown](https://github.com/GrahamCampbell/Laravel-Markdown)
 
 ## 导入 gentelella
 
+将 gentelella 导入项目中，目录结构如下：
 
+    |---- public/
+    |   |---- build/
+    |   |---- css/
+    |   |---- js/
+    |   |---- vendors/
+    |       |---- bootstrap/
+    |       |---- Chart.js/
+    |       |---- datatables.net/
+    |       |---- Flot/
+    |       |---- font-awesome/
+    |       |---- gentelella/
+    |       |---- iCheck/
+    |---- resources
+        |---- assets/
+        |---- lang/
+        |---- views/
+            |---- errors/
+            |---- layouts/
+            |---- vendor/
+                |---- gentelella/
+                    |---- calendar.blade.php
+                    |---- form.blade.php
+                    |---- icons.blade.php
 
+## 改（作）造（死）
+
+借助 Laravel 的 [blade 模板](http://laravel-china.org/docs/5.1/blade)，将重复的 html 代码抽离到 `layouts` 中。 

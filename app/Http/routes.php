@@ -15,10 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/gentelella', function () {
-    return view('vendor/gentelella/index');
-});
-
 Route::get('note', function () {
     return view('note');
+});
+
+Route::group(['prefix' => 'gentelella'], function () {
+    Route::get('{page}', function ($page) {
+        return view('vendor.gentelella.' . $page);
+    });
 });
