@@ -13,7 +13,7 @@ return [
     |
     | Supported: "database", "eloquent"
     |
-    */
+     */
 
     'driver' => 'eloquent',
 
@@ -26,7 +26,7 @@ return [
     | Eloquent model should be used to retrieve your users. Of course, it
     | is often just the "User" model but you may use whatever you like.
     |
-    */
+     */
 
     'model' => App\User::class,
 
@@ -39,7 +39,7 @@ return [
     | table should be used to retrieve your users. We have chosen a basic
     | default value but you may easily change it to any table you like.
     |
-    */
+     */
 
     'table' => 'users',
 
@@ -56,12 +56,19 @@ return [
     | considered valid. This security feature keeps tokens short-lived so
     | they have less time to be guessed. You may change this as needed.
     |
-    */
+     */
 
     'password' => [
-        'email'  => 'emails.password',
-        'table'  => 'password_resets',
+        'email' => 'emails.password',
+        'table' => 'password_resets',
         'expire' => 60,
     ],
 
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+            'table' => 'users',
+        ],
+    ],
 ];

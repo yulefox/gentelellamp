@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.gentelella')
 @section('title', 'Gentellela Alela! | ')
 @section('brand', 'Gentellela Alela!')
 @section('css-import')
@@ -313,6 +313,8 @@
   </div>
 </div>
 <!-- /page content -->
+@endsection
+@section('script-import')
 @endsection
 @section('script-custom')
 <!-- jQuery Smart Wizard -->

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.gentelella')
 @section('title', 'Gentellela Alela! | ')
 @section('brand', 'Gentellela Alela!')
 @section('css-import')

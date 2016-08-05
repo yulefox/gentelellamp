@@ -14,6 +14,14 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Inspire::class,
+        Commands\StuffEntrust::class,
+        Commands\UpdateServers::class,
+        Commands\VersionLog::class,
+        Commands\GitPull::class,
+        Commands\GenerateProtobuf::class,
+        Commands\MakeServers::class,
+        Commands\ReleasePackage::class,
+        Commands\UploadPackage::class,
     ];
 
     /**
@@ -25,6 +33,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('inspire')
-                 ->hourly();
+            ->hourly();
+        // 每 5 分钟获取一次版本配置
+        $schedule->command('lamp:version-log')
+            ->everyFiveMinutes();
     }
 }
