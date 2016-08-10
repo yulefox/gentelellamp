@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Server extends Model
 {
+    /*
     public host()
     {
-        return $this->belongsToMany('App\Host');
+    return $this->belongsToMany('App\Host');
     }
+     */
 
     public $incrementing = false;
 }
