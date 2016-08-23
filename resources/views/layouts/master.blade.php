@@ -1,3 +1,5 @@
 @include('layouts.header')
-@yield('content')
+@section('content')
+@include('widgets.page')
+@show
 @include('layouts.footer')

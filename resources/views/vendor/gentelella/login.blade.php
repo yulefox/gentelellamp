@@ -1,5 +1,5 @@
 @extends('layouts.blank')
-@section('title', 'Gentellela Alela! | ')
+@section('title', '至趣科技 | Lamp')
 @section('body')
 <body class="login">
   <div>
@@ -10,32 +10,23 @@
       <div class="animate form login_form">
         <section class="login_content">
           <form>
-            <h1>Login Form</h1>
+            <h1>至趣科技</h1>
             <div>
-              <input type="text" class="form-control" placeholder="Username" required="" />
+              <input type="text" class="form-control" placeholder="用户名" required="" />
             </div>
             <div>
-              <input type="password" class="form-control" placeholder="Password" required="" />
+              <input type="password" class="form-control" placeholder="密码" required="" />
             </div>
             <div>
-              <a class="btn btn-default submit" href="index.html">Log in</a>
-              <a class="reset_pass" href="#">Lost your password?</a>
+              <a class="btn btn-default submit" href="index.html">登录</a>
+              <a class="reset_pass" href="#">忘记密码?</a>
             </div>
 
             <div class="clearfix"></div>
-
             <div class="separator">
-              <p class="change_link">New to site?
-                <a href="#signup" class="to_register"> Create Account </a>
+              <p class="change_link">尚未拥有账号?
+                <a class="to_register" href="#signup"> 注册 </a>
               </p>
-
-              <div class="clearfix"></div>
-              <br />
-
-              <div>
-                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-              </div>
             </div>
           </form>
         </section>
@@ -44,34 +35,26 @@
       <div id="register" class="animate form registration_form">
         <section class="login_content">
           <form>
-            <h1>Create Account</h1>
+            <h1>注册</h1>
             <div>
-              <input type="text" class="form-control" placeholder="Username" required="" />
+              <input type="text" class="form-control" placeholder="用户名" required="" />
             </div>
             <div>
-              <input type="email" class="form-control" placeholder="Email" required="" />
+              <input type="email" class="form-control" placeholder="邮箱" required="" />
             </div>
             <div>
-              <input type="password" class="form-control" placeholder="Password" required="" />
+              <input type="password" class="form-control" placeholder="密码" required="" />
             </div>
             <div>
-              <a class="btn btn-default submit" href="index.html">Submit</a>
+              <a class="btn btn-default submit" href="index.html">提交</a>
             </div>
 
             <div class="clearfix"></div>
 
             <div class="separator">
-              <p class="change_link">Already a member ?
-                <a href="#signin" class="to_register"> Log in </a>
+              <p class="change_link">已经拥有账号?
+                <a class="to_register" href="#signin"> 登录 </a>
               </p>
-
-              <div class="clearfix"></div>
-              <br />
-
-              <div>
-                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-              </div>
             </div>
           </form>
         </section>
