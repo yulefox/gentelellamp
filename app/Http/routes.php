@@ -22,9 +22,16 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+Route::get('/operate/versions', 'DeployController@version');
+
+Route::group(['prefix' => 'api/v1'], function () {
+    Route::resource('versions', 'VersionController');
+});
+
 Route::get('/gentelella/{page}', 'LampController@gentelella');
 
-Route::group(['middleware' => 'auth'], function () {
+//Route::group(['middleware' => 'auth'], function () {
+Route::group([], function () {
     Route::get('/', 'GMController@role');
     Route::get('/doc/{page}', 'LampController@doc');
     Route::get('/api/query/{table}', 'LampController@prettyQuery');
@@ -34,7 +41,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/operate/deploy', 'DeployController@deploy');
     Route::post('/operate/merge', 'DeployController@merge');
     Route::post('/operate/package', 'DeployController@package');
-    Route::get('/operate/version', 'DeployController@version');
     Route::get('/monitor/online', 'OnlineController@index');
     Route::get('/admin/event', 'GMController@event');
     Route::post('/admin/event', 'GMController@postEvent');

@@ -31,6 +31,9 @@ class LampController extends Controller
         ],
         'hosts' => [
             'id' => 'ID',
+            'name' => '名称',
+            'display_name' => '显示',
+            'description' => '描述',
             'lan_ip' => '内网 IP',
             'wan_ip' => '外网 IP',
         ],

@@ -24,6 +24,57 @@ class DeployController extends Controller
             ]);
     }
 
+    public function version()
+    {
+        $vers = '[
+        {
+            "platform": "release",
+            "name": "正式发布版",
+            "versions": [
+            {
+                "name": "1.6.0"
+            },
+            {
+                "name": "1.6.1"
+            }
+            ]
+        },
+        {
+            "platform": "bt",
+            "name": "BT私服版",
+            "versions": [
+            {
+                "name": "1.6.0"
+            },
+            {
+                "name": "1.6.1"
+            }
+            ]
+        },
+        {
+            "platform": "thai",
+            "name": "海外泰文版",
+            "versions": [
+            {
+                "name": "1.6.0"
+            },
+            {
+                "name": "1.6.1"
+            }
+            ]
+        }
+        ]';
+        $vers = null;
+        $versions = json_decode($vers);
+        var_dump($versions);
+        return view('lamp.operate.version',
+            [
+                'menus' => Menu::$menus,
+                'title' => '版本',
+                'versions' => $versions,
+            ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

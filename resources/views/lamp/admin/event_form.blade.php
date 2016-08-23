@@ -7,6 +7,7 @@
         <select class="select2_group form-control" name="event">
           <option value="10000">资源发放</option>
           <option value="10001">系统公告</option>
+          <option value="9000003">跑马灯公告</option>
         </select>
       </div>
     </div>
@@ -69,6 +70,18 @@
     </div>
     <div class="form-group">
       <label class="control-label col-md-3 col-sm-3 col-xs-12">参数 B</label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input type="text" class="form-control" name="arg_b" placeholder="任务进度/道具数量/计数器数值">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12">字符串参数 A</label>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <input type="text" class="form-control" name="arg_a" placeholder="任务/道具/计数器的索引号">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12">字符串参数 B</label>
       <div class="col-md-6 col-sm-6 col-xs-12">
         <input type="text" class="form-control" name="arg_b" placeholder="任务进度/道具数量/计数器数值">
       </div>
