@@ -1,4 +1,5 @@
 var elixir = require('laravel-elixir');
+var gulp = require("gulp");
 
 /*
  |--------------------------------------------------------------------------
@@ -13,8 +14,12 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.sass('app.scss')
-    .browserify('app.js');
+    .sass('roleManager.scss')
+    .browserify('app.js')
+    // .browserSync({
+    // 	port: 8000
+    // })
     //.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap', 'public/fonts/bootstrap');
 
-    mix.version(['public/css/app.css', 'public/js/app.js']);
+    .version(['public/css/app.css', 'public/js/app.js', 'public/css/roleManager.css']);
 });
