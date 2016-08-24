@@ -64,6 +64,18 @@ return [
             'strict' => false,
         ],
 
+        'agame' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_AGAME', 'localhost'),
+            'database' => env('DB_DATABASE_AGAME', 'agame'),
+            'username' => env('DB_USERNAME_AGAME', 'root'),
+            'password' => env('DB_PASSWORD_AGAME', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),
