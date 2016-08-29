@@ -61,6 +61,12 @@
   <script src="/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
   @endif
 
+  @if (in_array('pnotify', $widgets))
+  <!-- PNotify -->
+  <script src="/vendors/pnotify/dist/pnotify.js"></script>
+  <script src="/vendors/pnotify/dist/pnotify.buttons.js"></script>
+  @endif
+
   @yield('script-import')
 
   <!-- Custom Theme Scripts -->

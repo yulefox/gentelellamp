@@ -24,7 +24,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::get('/operate/versions', 'DeployController@version');
 
-Route::group(['prefix' => 'api/v1'], function () {
+Route::group(['prefix' => 'jfjh/v1'], function () {
     Route::resource('versions', 'VersionController');
     Route::resource('players', 'PlayerController');
 });
