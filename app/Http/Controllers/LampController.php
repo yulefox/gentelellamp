@@ -69,6 +69,11 @@ class LampController extends Controller
             ]);
     }
 
+    public function getServers(Request $req)
+    {
+        return $this->queryAgame($req, 'cfg_app_base');
+    }
+
     public function doc($page)
     {
         return view($page);
@@ -77,6 +82,17 @@ class LampController extends Controller
     public function gentelella($page)
     {
         return view('vendor.gentelella.' . $page);
+    }
+
+    public function queryAgame(Request $req, $table)
+    {
+        $query = DB::connection('agame')->table($table);
+        $input = $req->all();
+        foreach ($input as $key => $value) {
+            $query = $query->where($key, $value);
+        }
+        $data = $query->get();
+        return $data;
     }
 
     public function query(Request $req, $table)
