@@ -39,6 +39,12 @@
   <link href="/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
   @endif
 
+  @if (in_array('pnotify', $widgets))
+  <!-- PNotify -->
+  <link href="/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+  <link href="/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+  @endif
+
   @yield('css-import')
 
   <!-- jVectorMap -->
