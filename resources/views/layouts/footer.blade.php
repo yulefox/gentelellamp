@@ -1,7 +1,7 @@
       <!-- footer content -->
       <footer>
         <div class="pull-right">
-          Lamp - by <a href="https://github.com/yulefox">Yule Fox</a>
+          Lamp - by <a href="https://github.com/yulefox">Yule Fox{{ $title }}</a>
         </div>
         <div class="clearfix"></div>
       </footer>
@@ -45,6 +45,11 @@
   <script src="/vendors/pdfmake/build/vfs_fonts.js"></script>
   @endif
 
+  <!-- @if (in_array('requirejs', $widgets)) -->
+  <!-- requirejs -->
+  <!-- <script src='/vendors/requirejs/require.min.js'></script> -->
+  <!-- @endif -->
+
   @if (in_array('smart_wizard', $widgets))
   <!-- jQuery Smart Wizard -->
   <script src="/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
@@ -59,6 +64,12 @@
   <!-- FullCalendar -->
   <script src="/vendors/moment/min/moment.min.js"></script>
   <script src="/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+  @endif
+
+  @if (in_array('pnotify', $widgets))
+  <!-- PNotify -->
+  <script src="/vendors/pnotify/dist/pnotify.js"></script>
+  <script src="/vendors/pnotify/dist/pnotify.buttons.js"></script>
   @endif
 
   @yield('script-import')

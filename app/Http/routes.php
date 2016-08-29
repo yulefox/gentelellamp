@@ -24,21 +24,20 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::get('/operate/versions', 'DeployController@version');
 
-Route::group(['prefix' => 'jfjh/v1'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'jfjh/v1'], function () {
     Route::resource('versions', 'VersionController');
     Route::resource('players', 'PlayerController');
-    Route::get('servers', 'LampController@getServers');
+    Route::get('apps', 'LampController@getServers');
 });
 
 Route::get('/gentelella/{page}', 'LampController@gentelella');
 
-//Route::group(['middleware' => 'auth'], function () {
-Route::group([], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'GMController@role');
+    Route::get('/home', 'GMController@role');
     Route::get('/doc/{page}', 'LampController@doc');
     Route::get('/api/query/{table}', 'LampController@prettyQuery');
     Route::get('/coc/costs', 'COCController@costs');
-//Route::get('/query/role', 'RoleController@get');
     Route::get('/operate/deploy', 'DeployController@index');
     Route::post('/operate/deploy', 'DeployController@deploy');
     Route::post('/operate/merge', 'DeployController@merge');

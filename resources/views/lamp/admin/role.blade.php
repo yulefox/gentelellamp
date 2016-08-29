@@ -1,4 +1,4 @@
-@extends('layouts.master', ['widgets' => ['smart_wizard', 'select2', 'icheck']])
+@extends('layouts.master', ['widgets' => ['smart_wizard', 'select2', 'icheck', 'datatable', 'pnotify']])
 @section('page-title', $title)
 @section('page-content')
 @include('widgets.panel', ['title' => '角色', 'description' => '', 'content' => 'lamp.admin.role_form'])
@@ -86,10 +86,7 @@
 <!-- Select2 -->
 <script>
   $(document).ready(function() {
-    $(".select2_single").select2({
-      placeholder: "选择操作",
-      allowClear: true
-    });
+
     $(".select2_group").select2({});
     $(".select2_multiple").select2({
       maximumSelectionLength: 10,
@@ -99,4 +96,15 @@
   });
 </script>
 <!-- /Select2 -->
+@endsection
+<!-- 本页面外部脚本 -->
+@section('script-import');
+<!-- mock.js -->
+<script src="http://mockjs.com/dist/mock.js"></script>
+<!-- btn query -->
+<script src="/js/btnQuery.js"></script>
+@endsection
+<!-- 当前页面样式 -->
+@section("css-import")
+<link rel="stylesheet" href="{{ elixir('css/roleManager.css')}}">
 @endsection

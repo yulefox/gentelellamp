@@ -1,43 +1,53 @@
-<!-- Smart Wizard -->
-<div id="deploy_form">
-  <form class="form-horizontal form-label-left">
-    <div class="form-group">
-      <div class="col-md-offset-3 col-sm-offset-3 col-md-3 col-sm-3 col-xs-12">
-        <input type="text" class="form-control" id="inputSuccess2" placeholder="角色 ID">
-      </div>
-      <div class="col-md-3 col-sm-3 col-xs-12">
-        <select class="select2_single form-control" tabindex="-1">
-          <option value="1">强制下线</option>
-          <option value="2">封停账号</option>
-          <option value="3">角色禁言</option>
-          <option value="4">角色改名</option>
-          <option value="5">角色恢复</option>
-          <option value="6">修改邮箱</option>
-          <option value="7">设置特权</option>
-          <option value="8">重置密码</option>
-          <option value="9">重置安全锁</option>
-        </select>
-      </div>
-      <div>
-        <div id="myTabContent" class="tab-content">
-          <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="single-tab">
-            <input type="text" class="form-control" placeholder="请输入角色 ID">
-          </div>
-          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="multiple-tab">
-            <textarea id="message" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="30" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
-            data-parsley-validation-threshold="10" placeholder="多个角色 ID 用 , 分割开"></textarea>
-          </div>
-          <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="filter-tab">
-          </div>
+<div class="" role="tabpanel" data-example-id="togglable-tabs">
+    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">角色</a>
+      </li>
+<!--       <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">邮件</a>
+      </li>
+      <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">事件</a>
+      </li> -->
+    </ul>
+  <div class="col-sm-offset-3 col-md-offset-3 col-sm-6 col-md-6 col-xs-12">
+    <div id="myTabContent" class="tab-content">
+      <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+        <!-- Smart Wizard -->
+        <div id="deploy_form">
+          <form class="form-horizontal form-label-left">
+            <div class="form-group">
+              <select type="text" class="select1_single form-control" id="inputSuccess2">
+                  <option value="800101">泰文1服（800101）</option>
+<!--                 <optgroup label="越狱">
+                  <option value="100101">越狱1服（100101）</option>
+                  <option value="100201">越狱2服（100201）</option>
+                  <option value="100301">越狱3服（100301）</option>
+                  <option value="100401">越狱4服（100401）</option>
+                  <option value="100501">越狱5服（100501）</option>
+                  <option value="100601">越狱6服（100601）</option>
+                </optgroup> -->
+              </select>
+            </div>
+            <div class="form-group">
+              <input id="shortId" type="text" class="form-control" placeholder="角色短ID(推荐)" style="display:none;">
+            </div>
+            <div class="form-group">
+              <input id="roleId" type="text" class="form-control" placeholder="角色名|账号名|短ID|长ID">
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+              <button id="query" type="button" class="btn btn-primary">执行</button>
+            </div>
+          </form>
         </div>
+      <!-- End SmartWizard Content -->
       </div>
-    </div>
-    <div class="ln_solid"></div>
-    <div class="form-group">
-      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-        <button type="submit" class="btn btn-primary">执行</button>
+<!--       <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+          booth letterpress, commodo enim craft beer mlkshk aliquip</p>
       </div>
+      <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+        <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
+          booth letterpress, commodo enim craft beer mlkshk </p>
+      </div> -->
     </div>
-  </form>
+  </div>
 </div>
-<!-- End SmartWizard Content -->

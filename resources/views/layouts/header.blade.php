@@ -39,6 +39,12 @@
   <link href="/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
   @endif
 
+  @if (in_array('pnotify', $widgets))
+  <!-- PNotify -->
+  <link href="/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+  <link href="/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+  @endif
+
   @yield('css-import')
 
   <!-- jVectorMap -->
@@ -77,7 +83,7 @@
               @if (isset($user))
               <h2>{{ $user->$role }}</h2>
               @else
-              <h3>管理员</h3>
+              <h3>运营人员</h3>
               @endif
               <ul class="nav side-menu">
                 @foreach ($menus as $menu)
@@ -93,7 +99,7 @@
             </div>
             <hr/>
             <div class="menu_section">
-              <ul class="nav side-menu">
+              <ul class="nav side-menu" style="display:none;">
                 <li><a href={{ url('gentelella/index') }}>Gentelella</a></li>
               </ul>
             </div>
