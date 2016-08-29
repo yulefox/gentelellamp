@@ -7,6 +7,7 @@ define(function(require, exports, moudle){
 	// 参数为一个对象 属性为数据的字段，值为页面上元素对应的 selector
 	var data = obj.requestData({
 		"serve_id": "#inputSuccess2",
+		"short_id": "#shortId",
 		"role": "#roleId"
 	});
 

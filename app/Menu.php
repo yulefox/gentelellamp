@@ -4,48 +4,50 @@ namespace App;
 class Menu
 {
     public static $menus = [
+        /*
         [
-            'name' => 'monitor',
-            'display_name' => '监控',
-            'icon' => "fa fa-home",
-            'children' => [
-                [
-                    'name' => 'online',
-                    'display_name' => '在线',
-                ],
-                [
-                    'name' => 'hosts',
-                    'display_name' => '主机',
-                ],
-                [
-                    'name' => 'servers',
-                    'display_name' => '区服',
-                ],
-            ],
+        'name' => 'monitor',
+        'display_name' => '监控',
+        'icon' => "fa fa-home",
+        'children' => [
+        [
+        'name' => 'online',
+        'display_name' => '在线',
         ],
         [
-            'name' => 'operate',
-            'display_name' => '维护',
-            'icon' => "fa fa-home",
-            'children' => [
-                [
-                    'name' => 'hosts',
-                    'display_name' => '主机',
-                ],
-                [
-                    'name' => 'servers',
-                    'display_name' => '区服',
-                ],
-                [
-                    'name' => 'versions',
-                    'display_name' => '版本',
-                ],
-                [
-                    'name' => 'deploy',
-                    'display_name' => '部署',
-                ],
-            ],
+        'name' => 'hosts',
+        'display_name' => '主机',
         ],
+        [
+        'name' => 'servers',
+        'display_name' => '区服',
+        ],
+        ],
+        ],
+        [
+        'name' => 'operate',
+        'display_name' => '维护',
+        'icon' => "fa fa-home",
+        'children' => [
+        [
+        'name' => 'hosts',
+        'display_name' => '主机',
+        ],
+        [
+        'name' => 'servers',
+        'display_name' => '区服',
+        ],
+        [
+        'name' => 'versions',
+        'display_name' => '版本',
+        ],
+        [
+        'name' => 'deploy',
+        'display_name' => '部署',
+        ],
+        ],
+        ],
+         */
         [
             'name' => 'admin',
             'display_name' => '管理',
@@ -65,25 +67,27 @@ class Menu
                 ],
             ],
         ],
-        [
-            'name' => 'system',
-            'display_name' => '系统',
-            'icon' => "fa fa-home",
-            'children' => [
-                [
-                    'name' => 'users',
-                    'display_name' => '用户',
-                ],
-                [
-                    'name' => 'roles',
-                    'display_name' => '角色',
-                ],
-                [
-                    'name' => 'permissions',
-                    'display_name' => '功能',
-                ],
-            ],
-        ],
+        /*
+    [
+    'name' => 'system',
+    'display_name' => '系统',
+    'icon' => "fa fa-home",
+    'children' => [
+    [
+    'name' => 'users',
+    'display_name' => '用户',
+    ],
+    [
+    'name' => 'roles',
+    'display_name' => '角色',
+    ],
+    [
+    'name' => 'permissions',
+    'display_name' => '功能',
+    ],
+    ],
+    ],
+     */
     ];
 
     protected $name;

@@ -15,6 +15,7 @@
           <form class="form-horizontal form-label-left">
             <div class="form-group">
               <select type="text" class="select1_single form-control" id="inputSuccess2">
+                  <option value="800101">泰文1服（800101）</option>
 <!--                 <optgroup label="越狱">
                   <option value="100101">越狱1服（100101）</option>
                   <option value="100201">越狱2服（100201）</option>
@@ -24,6 +25,9 @@
                   <option value="100601">越狱6服（100601）</option>
                 </optgroup> -->
               </select>
+            </div>
+            <div class="form-group">
+              <input id="shortId" type="text" class="form-control" placeholder="角色短ID(推荐)" style="display:none;">
             </div>
             <div class="form-group">
               <input id="roleId" type="text" class="form-control" placeholder="角色名|账号名|短ID|长ID">
