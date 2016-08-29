@@ -1,7 +1,7 @@
       <!-- footer content -->
       <footer>
         <div class="pull-right">
-          Lamp - by <a href="https://github.com/yulefox">Yule Fox</a>
+          Lamp - by <a href="https://github.com/yulefox">Yule Fox{{ $title }}</a>
         </div>
         <div class="clearfix"></div>
       </footer>
@@ -44,6 +44,11 @@
   <script src="/vendors/pdfmake/build/pdfmake.min.js"></script>
   <script src="/vendors/pdfmake/build/vfs_fonts.js"></script>
   @endif
+
+  <!-- @if (in_array('requirejs', $widgets)) -->
+  <!-- requirejs -->
+  <!-- <script src='/vendors/requirejs/require.min.js'></script> -->
+  <!-- @endif -->
 
   @if (in_array('smart_wizard', $widgets))
   <!-- jQuery Smart Wizard -->

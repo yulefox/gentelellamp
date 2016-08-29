@@ -27,7 +27,7 @@ Route::get('/operate/versions', 'DeployController@version');
 Route::group(['prefix' => 'jfjh/v1'], function () {
     Route::resource('versions', 'VersionController');
     Route::resource('players', 'PlayerController');
-    Route::get('servers', 'LampController@getServers');
+    Route::get('apps', 'LampController@getServers');
 });
 
 Route::get('/gentelella/{page}', 'LampController@gentelella');

@@ -15,14 +15,14 @@
           <form class="form-horizontal form-label-left">
             <div class="form-group">
               <select type="text" class="select1_single form-control" id="inputSuccess2">
-                <optgroup label="越狱">
+<!--                 <optgroup label="越狱">
                   <option value="100101">越狱1服（100101）</option>
                   <option value="100201">越狱2服（100201）</option>
                   <option value="100301">越狱3服（100301）</option>
                   <option value="100401">越狱4服（100401）</option>
                   <option value="100501">越狱5服（100501）</option>
                   <option value="100601">越狱6服（100601）</option>
-                </optgroup>
+                </optgroup> -->
               </select>
             </div>
             <div class="form-group">

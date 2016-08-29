@@ -1,4 +1,43 @@
 
+  $(document).ready(function() {
+    function concat(obj){
+      return "/" + obj.prefix + "/" + obj.api;
+    }
+    $.ajax({
+      url: concat({
+        prefix: 'jfjh/v1',
+        api: 'apps'
+      }),
+      method: 'get',
+      data: {
+        platform: '800',
+        type: 'game'
+      },
+      dataType: 'json'
+    }).success(function(data) {
+      data = data.app;
+      var len = data.length;
+      var val = 0;
+      var txt = '';
+      var curr = null;
+      var options = '';
+      for(var i = 0; i < len; i++){
+        curr = data[i];
+        val = curr.idx;
+        txt = curr.brief + '(' + val + ')';
+        options +='<option value="' + val + '">' + txt + '</option>'
+      }
+
+      $('.select1_single').append(options);
+
+      $(".select1_single").select2({
+        placeholder: "请选择区服（可选）",
+        allowClear: true
+      });
+
+    });
+  });
+
   $("#query").on("click", function(e){
 
     // 取请求data;
@@ -40,7 +79,7 @@
       panel.find(".x_content").empty()
       // 给.x_content添加新的子元素
         .html('\
-            <table id="result" class="table table-striped table-bordered bulk_action">\
+            <table id="result" class="table table-striped table-bordered bulk_action dt-responsive nowrap" cellspacing="0" width="100%">\
               <thead>\
               </thead>\
               <tbody>\
@@ -48,8 +87,8 @@
             </table>');
 
 
-      var data = data["data"],
-          thead = [],
+      data = data["role"] || data['data'];
+      var thead = [],
           i = null,
           origin = data[0];
       for(i in origin){
@@ -284,6 +323,13 @@
             title: title,
             text: '提交成功',
             type: 'success',
+            styling: 'bootstrap3'
+          });
+        }).fail(function(data) {
+          new PNotify({
+            title: title,
+            text: '提交失败',
+            type: 'error',
             styling: 'bootstrap3'
           });
         });
