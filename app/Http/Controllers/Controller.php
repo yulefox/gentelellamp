@@ -35,7 +35,7 @@ abstract class Controller extends BaseController
         $sign = hash_hmac('sha256', $str, '111111');
         $input['sign'] = $sign;
         $ch = curl_init();
-        $url = "http://192.168.1.109:8080/v1/" . $api;
+        $url = "http://sdk.91juice.com:8081/v1/" . $api;
         if ($method == 'POST') {
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $input);

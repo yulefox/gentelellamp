@@ -57,9 +57,9 @@ class LampController extends Controller
         return view('welcome');
     }
 
-    public function index(Request $req, $sector, $page)
+    public function index(Request $request, $sector, $page)
     {
-        $data = $this->query($req, $page);
+        $data = $this->query($request, $page);
         return view('templates.datatable',
             [
                 'menus' => Menu::$menus,
@@ -69,9 +69,10 @@ class LampController extends Controller
             ]);
     }
 
-    public function getServers(Request $req)
+    public function getServers(Request $request)
     {
-        return $this->queryAgame($req, 'cfg_app_base');
+        return $this->invokeAPI('GET', 'apps', $request->all());
+        return $this->queryAgame($request, 'cfg_app_base');
     }
 
     public function doc($page)

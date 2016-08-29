@@ -23,6 +23,7 @@ class PlayerController extends Controller
      */
     public function index(Request $request)
     {
+        return $this->invokeAPI('GET', 'roles', $request->all());
         $players = DB::connection('agame')->table('dat_role');
         if ($request->role) {
             if (is_numeric($request->role)) {
