@@ -74,6 +74,11 @@ class LampController extends Controller
         return $this->invokeAPI('GET', 'apps', $request->all());
     }
 
+    public function addNamelist(Request $request)
+    {
+        return $this->invokeAPI('GET', 'gm/add_namelist', $request->all());
+    }
+
     public function triggerEvent(Request $request)
     {
         return $this->invokeAPI('GET', 'gm/trigger_event', $request->all());

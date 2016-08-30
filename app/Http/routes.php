@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'jfjh/v1'], function () {
     Route::resource('versions', 'VersionController');
     Route::resource('players', 'PlayerController');
     Route::get('apps', 'LampController@getServers');
+    Route::get('gm/add_namelist', 'LampController@addNamelist');
     Route::get('gm/trigger_event', 'LampController@triggerEvent');
     Route::get('gm/add_mail', 'LampController@addMail');
 });

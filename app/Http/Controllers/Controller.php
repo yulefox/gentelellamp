@@ -27,7 +27,6 @@ abstract class Controller extends BaseController
 
     protected function invokeAPI($method, $api, $input)
     {
-        Log::info($input);
         $input['timestamp'] = date('Y-m-d H:i:s');
         $input['nonce'] = bin2hex(random_bytes(6));
         $fields = $input;
