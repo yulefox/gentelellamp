@@ -470,7 +470,7 @@
 
               var data = {
                 oid: null,
-                from_name: "系统",
+                from_name: "SYSTEM",
                 to_name: '',
                 type: mailType,
                 title: mailTitle,
@@ -602,7 +602,7 @@
                 $.ajax({
                   url: concat({
                     prefix: 'jfjh/v1',
-                    api: 'gm/add_namelist'
+                    api: 'gm/trigger_event'
                   }),
                   method: 'get',
                   data: data,
@@ -709,7 +709,7 @@
                 $.ajax({
                   url: concat({
                     prefix: 'jfjh/v1',
-                    api: 'gm/add_namelist'
+                    api: 'gm/trigger_event'
                   }),
                   method: 'get',
                   data: data,
@@ -809,7 +809,7 @@
                 $.ajax({
                   url: concat({
                     prefix: 'jfjh/v1',
-                    api: 'gm/add_namelist'
+                    api: 'gm/trigger_event'
                   }),
                   method: 'get',
                   data: data,
@@ -926,7 +926,7 @@
                 $.ajax({
                   url: concat({
                     prefix: 'jfjh/v1',
-                    api: 'gm/add_mail'
+                    api: 'gm/trigger_event'
                   }),
                   method: 'get',
                   data: data,
@@ -1019,7 +1019,7 @@
                 $.ajax({
                   url: concat({
                     prefix: 'jfjh/v1',
-                    api: 'gm/add_namelist'
+                    api: 'gm/trigger_event'
                   }),
                   method: 'get',
                   data: data,
@@ -1111,7 +1111,7 @@
                 $.ajax({
                   url: concat({
                     prefix: 'jfjh/v1',
-                    api: 'gm/add_namelist'
+                    api: 'gm/trigger_event'
                   }),
                   method: 'get',
                   data: data,
@@ -1203,7 +1203,7 @@
                 $.ajax({
                   url: concat({
                     prefix: 'jfjh/v1',
-                    api: 'gm/add_namelist'
+                    api: 'gm/trigger_event'
                   }),
                   method: 'get',
                   data: data,

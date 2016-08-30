@@ -48,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/monitor/online', 'OnlineController@index');
     Route::get('/admin/event', 'GMController@event');
     Route::post('/admin/event', 'GMController@postEvent');
-    Route::get('/admin/mail', 'GMController@mail');
+    Route::get('/admin/system', 'GMController@system');
     Route::post('/admin/mail', 'GMController@postMail');
     Route::get('/admin/role', 'GMController@role');
     Route::get('/{sector}/{page}', 'LampController@index');
