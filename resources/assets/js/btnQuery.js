@@ -260,7 +260,7 @@
                 }
               });
 
-              // 被操作用户SID
+              // 被操作用户user
               var str_b_arr = $("#result input[name='table_records']");
               var str_b = [];
               var col_user = 0;
@@ -353,7 +353,7 @@
                   <div class="form-group">\
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">邮件类型</label>\
                     <div class="col-md-6 col-sm-6 col-xs-12">\
-                      <select class="select2_group form-control" name="type">\
+                      <select id="mailType" class="select2_group form-control" name="type">\
                         <option value="10000">资源发放</option>\
                         <option value="10001">系统公告</option>\
                       </select>\
@@ -375,10 +375,7 @@
                   <div class="ln_solid"></div>\
                   <div class="form-group">\
                     <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
-                      <select id="mailGroupA" class="select2_group form-control" name="idx_a">\
-                        <option value="501001">金币(501001)</option>\
-                        <option value="501002">钻石(501002)</option>\
-                      </select>\
+                      <input name="item_a" class="form-control" type="text" placeholder="请输入道具A的值" />\
                     </div>\
                     <div class="col-md-2 col-sm-2 col-xs-12">\
                       <input type="text" class="form-control" name="num_a" id="inputSuccess3" placeholder="道具 A 数量">\
@@ -386,10 +383,7 @@
                   </div>\
                   <div class="form-group">\
                     <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
-                      <select id="mailGroupB" class="select2_group form-control" name="idx_b">\
-                        <option value="501001">金币(501001)</option>\
-                        <option value="501002">钻石(501002)</option>\
-                      </select>\
+                      <input name="item_b" class="form-control" type="text" placeholder="请输入道具B的值" />\
                     </div>\
                     <div class="col-md-2 col-sm-2 col-xs-12">\
                       <input type="text" class="form-control" name="num_b" id="inputSuccess3" placeholder="道具 B 数量">\
@@ -397,10 +391,7 @@
                   </div>\
                   <div class="form-group">\
                     <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
-                      <select id="mailGroupC" class="select2_group form-control" name="grp_idx">\
-                        <option value="501001">金币(501001)</option>\
-                        <option value="501002">钻石(501002)</option>\
-                      </select>\
+                      <input name="item_group" class="form-control" type="text" placeholder="请输入道具组的值" />\
                     </div>\
                     <div class="col-md-2 col-sm-2 col-xs-12">\
                       <input type="text" class="form-control" name="grp_num" id="inputSuccess3" placeholder="道具组数量">\
@@ -409,8 +400,831 @@
               </form>');
 
             $("#done").on('click', function(e) {
-              
-              
+              var oid = null;
+              // 事件类型
+              var event = $("#options").val();
+
+
+              // 被操作用户name
+              var to_name_arr = $("#result input[name='table_records']");
+              var to_name = [];
+              var col_user = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'name'){
+                  col_user = curr.index();
+                  return ;
+                }
+              });
+              $(to_name_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  to_name.push(curr.closest('tr').find('td').eq(col_user).text());
+                }
+              });
+
+              //被操作用户的server_id
+              var server_id_arr = $("#result input[name='table_records']");
+              var server_id = [];
+              var col_server_id = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'server_id'){
+                  col_server_id = curr.index();
+                  return ;
+                }
+              });
+              $(server_id_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  server_id.push(curr.closest('tr').find('td').eq(col_server_id).text());
+                }
+              });
+
+              // 邮件类型
+              var mailType = $("#mailType").val();
+
+              // 邮件标题
+              var mailTitle = $("#mailTitle").val();
+
+              // 邮件信息
+              var mailMessage = $("#mailMessage").val();
+
+              // 道具A
+              var idx_a = $("input[name='item_a']").val();
+              var num_a = $("input[name='num_a']").val();
+
+              // 道具B
+              var idx_b = $("input[name='item_b']").val();
+              var num_b = $("input[name='num_b']").val();
+
+              // 道具组
+              var group_idx = $("input[name='item_group']").val();
+              var group_num = $("input[name='grp_num']").val();
+
+              var select = $("#options");
+              var val = select.val();
+              var title = select.find("option[value='" + val + "']").text();
+
+              var data = {
+                oid: null,
+                from_name: "系统",
+                to_name: '',
+                type: mailType,
+                title: mailTitle,
+                data: mailMessage,
+                expired: 604800,
+                idx_a: idx_a,
+                num_a: num_a,
+                idx_b: idx_b,
+                num_b: num_b,
+                group_idx: group_idx,
+                group_num: group_num,
+                server_id: ''
+              };
+
+              var len = to_name.length;
+
+              for(var i = 0; i< len; i++){
+                data.to_name = to_name[i];
+                data.server_id = server_id[i];
+
+                $.ajax({
+                  url: concat({
+                    prefix: 'jfjh/v1',
+                    api: 'gm/add_mail'
+                  }),
+                  method: 'get',
+                  data: data,
+                  dataType: 'json'
+                }).success(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交成功',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                  });
+                }).fail(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交失败',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                  });
+                });
+
+              }
+
+              $("#cancel").click();
+            });
+
+            break;
+          case '200101':
+            bodyContent = $('\
+              <h4>添加道具</h4>\
+              <form id="addItem" class="form-horizontal">\
+                <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
+                  <input placeholder="请输入道具名称" class="form-control" type="text" name="item_id" />\
+                </div>\
+                <div class="col-md-2 col-sm-2 col-xs-12">\
+                  <input placeholder="请输入道具数量" class="form-control" type="text" name="item_num" />\
+                </div>\
+              </form>');
+
+
+            $("#done").on('click', function(e) {
+              // 事件类型
+              var event = $("#options").val();
+
+              // 被操作用户name
+              var str_b_arr = $("#result input[name='table_records']");
+              var str_b = [];
+              var col_user = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'name'){
+                  col_user = curr.index();
+                  return ;
+                }
+              });
+              $(str_b_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  str_b.push(curr.closest('tr').find('td').eq(col_user).text());
+                }
+              });
+
+              //被操作用户的server_id
+              var server_id_arr = $("#result input[name='table_records']");
+              var server_id = [];
+              var col_server_id = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'server_id'){
+                  col_server_id = curr.index();
+                  return ;
+                }
+              });
+              $(server_id_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  server_id.push(curr.closest('tr').find('td').eq(col_server_id).text());
+                }
+              });
+
+              // 道具ID
+              var arg_a = $("input[name='item_id']").val();
+
+              // 道具数量
+              var arg_b = $("input[name='item_num']").val();
+
+              var data = {
+                event: event,
+                arg_a: arg_a,
+                arg_b: arg_b,
+                str_b: '',
+                server_id: ''
+              };
+
+              var select = $("#options");
+              var val = select.val();
+              var title = select.find("option[value='" + val + "']").text();
+              var len = str_b.length;
+
+              for(var i = 0; i < len; i++){
+                data.str_b = str_b[i];
+                data.server_id = server_id[i];
+
+                $.ajax({
+                  url: concat({
+                    prefix: 'jfjh/v1',
+                    api: 'gm/add_namelist'
+                  }),
+                  method: 'get',
+                  data: data,
+                  dataType: 'json'
+                }).success(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交成功',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                  });
+                }).fail(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交失败',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                  });
+                });
+              }
+
+              $("#cancel").click();
+            });
+
+
+            break;
+          case '600103':
+            bodyContent = $('\
+              <h4>修改计数器</h4>\
+              <form id="addCounter" class="form-horizontal">\
+                <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
+                  <input placeholder="请输入计数器名称" class="form-control" type="text" name="counter_id" />\
+                </div>\
+                <div class="col-md-2 col-sm-2 col-xs-12">\
+                  <input placeholder="请输入计数器数值" class="form-control" type="text" name="counter_num" />\
+                </div>\
+              </form>');
+
+            $("#done").on('click', function(e) {
+              // 事件类型
+              var event = $("#options").val();
+
+              // 被操作用户name
+              var str_b_arr = $("#result input[name='table_records']");
+              var str_b = [];
+              var col_user = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'name'){
+                  col_user = curr.index();
+                  return ;
+                }
+              });
+              $(str_b_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  str_b.push(curr.closest('tr').find('td').eq(col_user).text());
+                }
+              });
+
+              //被操作用户的server_id
+              var server_id_arr = $("#result input[name='table_records']");
+              var server_id = [];
+              var col_server_id = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'server_id'){
+                  col_server_id = curr.index();
+                  return ;
+                }
+              });
+              $(server_id_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  server_id.push(curr.closest('tr').find('td').eq(col_server_id).text());
+                }
+              });
+
+              // 修改器ID
+              var arg_a = $("input[name='counter_id']").val();
+
+              // 计数器数值
+              var arg_b = $("input[name='counter_num']").val();
+
+              var data = {
+                event: event,
+                arg_a: arg_a,
+                arg_b: arg_b,
+                str_b: '',
+                server_id: ''
+              };
+
+              var select = $("#options");
+              var val = select.val();
+              var title = select.find("option[value='" + val + "']").text();
+              var len = str_b.length;
+
+              for(var i = 0; i < len; i++){
+                data.str_b = str_b[i];
+                data.server_id = server_id[i];
+
+                $.ajax({
+                  url: concat({
+                    prefix: 'jfjh/v1',
+                    api: 'gm/add_namelist'
+                  }),
+                  method: 'get',
+                  data: data,
+                  dataType: 'json'
+                }).success(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交成功',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                  });
+                }).fail(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交失败',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                  });
+                });
+              }
+
+              $("#cancel").click();
+            });
+
+            break;
+
+          case '210101':
+            bodyContent = $('\
+              <h4>添加任务</h4>\
+              <form id="addTask" class="form-horizontal">\
+                <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6 col-xs-12">\
+                  <input placeholder="请输入任务名称" class="form-control" type="text" name="task_id" />\
+                </div>\
+              </form>');
+
+            $("#done").on('click', function(e) {
+              // 事件类型
+              var event = $("#options").val();
+
+              // 被操作用户name
+              var str_b_arr = $("#result input[name='table_records']");
+              var str_b = [];
+              var col_user = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'name'){
+                  col_user = curr.index();
+                  return ;
+                }
+              });
+              $(str_b_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  str_b.push(curr.closest('tr').find('td').eq(col_user).text());
+                }
+              });
+
+              //被操作用户的server_id
+              var server_id_arr = $("#result input[name='table_records']");
+              var server_id = [];
+              var col_server_id = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'server_id'){
+                  col_server_id = curr.index();
+                  return ;
+                }
+              });
+              $(server_id_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  server_id.push(curr.closest('tr').find('td').eq(col_server_id).text());
+                }
+              });
+
+              // 任务ID
+              var arg_a = $("input[name='task_id']").val();
+
+              var data = {
+                event: event,
+                arg_a: arg_a,
+                str_b: '',
+                server_id: ''
+              };
+
+              var select = $("#options");
+              var val = select.val();
+              var title = select.find("option[value='" + val + "']").text();
+              var len = str_b.length;
+
+              for(var i = 0; i < len; i++){
+                data.str_b = str_b[i];
+                data.server_id = server_id[i];
+
+                $.ajax({
+                  url: concat({
+                    prefix: 'jfjh/v1',
+                    api: 'gm/add_namelist'
+                  }),
+                  method: 'get',
+                  data: data,
+                  dataType: 'json'
+                }).success(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交成功',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                  });
+                }).fail(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交失败',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                  });
+                });
+              }
+
+              $("#cancel").click();
+            });
+
+            break;
+
+          case '210103':
+            bodyContent = $('\
+              <h4>设置任务状态</h4>\
+              <form id="setStatus" class="form-horizontal">\
+                <div class="col-md-offset-1 col-sm-offset-1 col-md-4 col-sm-4 col-xs-12">\
+                  <input placeholder="请输入任务名称" class="form-control" type="text" name="task_id" />\
+                </div>\
+                <div class="col-md-4 col-sm-4 col-xs-12">\
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12">已接\
+                      <input value="2" name="task_status" type="radio" class="flat" checked="checked">\
+                  </label>\
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12">成功\
+                      <input value="3" name="task_status" type="radio" class="flat">\
+                  </label>\
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12">完成\
+                      <input value="5" name="task_status" type="radio" class="flat">\
+                  </label>\
+                </div>\
+              </form>');
+
+            $("#done").on('click', function(e) {
+              // 事件类型
+              var event = $("#options").val();
+
+
+              // 被操作用户name
+              var str_b_arr = $("#result input[name='table_records']");
+              var str_b = [];
+              var col_user = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'name'){
+                  col_user = curr.index();
+                  return ;
+                }
+              });
+              $(str_b_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  str_b.push(curr.closest('tr').find('td').eq(col_user).text());
+                }
+              });
+
+              //被操作用户的server_id
+              var server_id_arr = $("#result input[name='table_records']");
+              var server_id = [];
+              var col_server_id = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'server_id'){
+                  col_server_id = curr.index();
+                  return ;
+                }
+              });
+              $(server_id_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  server_id.push(curr.closest('tr').find('td').eq(col_server_id).text());
+                }
+              });
+
+              // 任务ID
+              var arg_a = $("input[name='task_id']").val();
+
+              // 任务状态
+              var arg_b = $("input[name='task_status']:checked").val();
+
+              var select = $("#options");
+              var val = select.val();
+              var title = select.find("option[value='" + val + "']").text();
+
+              var data = {
+                event: event,
+                str_b: '',
+                server_id: '',
+                arg_a: arg_a,
+                arg_b: arg_b,
+              };
+
+              var len = str_b.length;
+
+              for(var i = 0; i< len; i++){
+                data.str_b = str_b[i];
+                data.server_id = server_id[i];
+
+                $.ajax({
+                  url: concat({
+                    prefix: 'jfjh/v1',
+                    api: 'gm/add_mail'
+                  }),
+                  method: 'get',
+                  data: data,
+                  dataType: 'json'
+                }).success(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交成功',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                  });
+                }).fail(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交失败',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                  });
+                });
+
+              }
+
+              $("#cancel").click();
+            });
+
+            break;
+
+          case '900101':
+            bodyContent = $('\
+              <h4>重新加载角色</h4>\
+              <p>重新加载角色</p>');
+
+                        $("#done").on('click', function(e) {
+              // 事件类型
+              var event = $("#options").val();
+
+              // 被操作用户name
+              var str_b_arr = $("#result input[name='table_records']");
+              var str_b = [];
+              var col_user = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'name'){
+                  col_user = curr.index();
+                  return ;
+                }
+              });
+              $(str_b_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  str_b.push(curr.closest('tr').find('td').eq(col_user).text());
+                }
+              });
+
+              //被操作用户的server_id
+              var server_id_arr = $("#result input[name='table_records']");
+              var server_id = [];
+              var col_server_id = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'server_id'){
+                  col_server_id = curr.index();
+                  return ;
+                }
+              });
+              $(server_id_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  server_id.push(curr.closest('tr').find('td').eq(col_server_id).text());
+                }
+              });
+
+              var data = {
+                event: event,
+                str_b: '',
+                server_id: ''
+              };
+
+              var select = $("#options");
+              var val = select.val();
+              var title = select.find("option[value='" + val + "']").text();
+              var len = str_b.length;
+
+              for(var i = 0; i < len; i++){
+                data.str_b = str_b[i];
+                data.server_id = server_id[i];
+
+                $.ajax({
+                  url: concat({
+                    prefix: 'jfjh/v1',
+                    api: 'gm/add_namelist'
+                  }),
+                  method: 'get',
+                  data: data,
+                  dataType: 'json'
+                }).success(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交成功',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                  });
+                }).fail(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交失败',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                  });
+                });
+              }
+
+              $("#cancel").click();
+            });
+
+            break;
+
+          case '900202':
+            bodyContent = $('\
+              <h4>恢复角色</h4>\
+              <p>恢复角色</p>');
+
+                        $("#done").on('click', function(e) {
+              // 事件类型
+              var event = $("#options").val();
+
+              // 被操作用户name
+              var str_b_arr = $("#result input[name='table_records']");
+              var str_b = [];
+              var col_user = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'name'){
+                  col_user = curr.index();
+                  return ;
+                }
+              });
+              $(str_b_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  str_b.push(curr.closest('tr').find('td').eq(col_user).text());
+                }
+              });
+
+              //被操作用户的server_id
+              var server_id_arr = $("#result input[name='table_records']");
+              var server_id = [];
+              var col_server_id = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'server_id'){
+                  col_server_id = curr.index();
+                  return ;
+                }
+              });
+              $(server_id_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  server_id.push(curr.closest('tr').find('td').eq(col_server_id).text());
+                }
+              });
+
+              var data = {
+                event: event,
+                str_b: '',
+                server_id: ''
+              };
+
+              var select = $("#options");
+              var val = select.val();
+              var title = select.find("option[value='" + val + "']").text();
+              var len = str_b.length;
+
+              for(var i = 0; i < len; i++){
+                data.str_b = str_b[i];
+                data.server_id = server_id[i];
+
+                $.ajax({
+                  url: concat({
+                    prefix: 'jfjh/v1',
+                    api: 'gm/add_namelist'
+                  }),
+                  method: 'get',
+                  data: data,
+                  dataType: 'json'
+                }).success(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交成功',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                  });
+                }).fail(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交失败',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                  });
+                });
+              }
+
+              $("#cancel").click();
+            });
+
+            break;
+
+          case '900010':
+            bodyContent = $('\
+              <h4>清除通天塔数据</h4>\
+              <p>清除通天塔数据</p>');
+
+                        $("#done").on('click', function(e) {
+              // 事件类型
+              var event = $("#options").val();
+
+              // 被操作用户name
+              var str_b_arr = $("#result input[name='table_records']");
+              var str_b = [];
+              var col_user = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'name'){
+                  col_user = curr.index();
+                  return ;
+                }
+              });
+              $(str_b_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  str_b.push(curr.closest('tr').find('td').eq(col_user).text());
+                }
+              });
+
+              //被操作用户的server_id
+              var server_id_arr = $("#result input[name='table_records']");
+              var server_id = [];
+              var col_server_id = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'server_id'){
+                  col_server_id = curr.index();
+                  return ;
+                }
+              });
+              $(server_id_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  server_id.push(curr.closest('tr').find('td').eq(col_server_id).text());
+                }
+              });
+
+              var data = {
+                event: event,
+                str_b: '',
+                server_id: ''
+              };
+
+              var select = $("#options");
+              var val = select.val();
+              var title = select.find("option[value='" + val + "']").text();
+              var len = str_b.length;
+
+              for(var i = 0; i < len; i++){
+                data.str_b = str_b[i];
+                data.server_id = server_id[i];
+
+                $.ajax({
+                  url: concat({
+                    prefix: 'jfjh/v1',
+                    api: 'gm/add_namelist'
+                  }),
+                  method: 'get',
+                  data: data,
+                  dataType: 'json'
+                }).success(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交成功',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                  });
+                }).fail(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交失败',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                  });
+                });
+              }
+
               $("#cancel").click();
             });
 
@@ -423,21 +1237,6 @@
         if($("select[name='type']")){
           $("select[name='type']").select2({
             placeholder: "资源发放",
-            allowClear: true
-          });
-        }
-
-        if($("#mailGroupA")){
-          $("#mailGroupA").select2({
-            placeholder: "请选择发放道具A",
-            allowClear: true
-          });
-          $("#mailGroupB").select2({
-            placeholder: "请选择发放道具B",
-            allowClear: true
-          });
-          $("#mailGroupC").select2({
-            placeholder: "请选择发放道具组",
             allowClear: true
           });
         }

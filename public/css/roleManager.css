@@ -27,6 +27,8 @@ select + .select2 {
 #sendMail .form-group {
   display: block;
   margin-bottom: 10px; }
+  #sendMail .form-group .form-control {
+    width: 100%; }
   #sendMail .form-group label {
     text-align: right; }
   #sendMail .form-group select {
@@ -35,6 +37,9 @@ select + .select2 {
     width: 100%; }
   #sendMail .form-group #mailMessage {
     width: 100%; }
+
+#addItem .form-control, #addCounter .form-control, #addTask .form-control, #setStatus .form-control {
+  width: 100%; }
 
 /*@media (min-width: 992px){
 	.modal {
