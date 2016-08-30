@@ -144,8 +144,7 @@
       label.html('\
               <select id="options" class="select2_single form-control" name="event" tabindex="-1">\
                 <option value="900002">黑白名单(900002)</option>\
-                <option value="900003">角色改名(900003)</option>\
-                <option value="900004">角色恢复(900004)</option>\
+                <option value="900003">发送邮件(900003)</option>\
               </select>');
       $("#result_length").append(label);
 
@@ -227,13 +226,38 @@
             break;
           case '900003':
             bodyContent = $('\
-              <h4>正在开发</h4>\
-              <p>...</p>');
-            break;
-          case '900004':
-            bodyContent = $('\
-              <h4>正在开发</h4>\
-              <p>...</p>');
+              <h4>发送邮件</h4>\
+              <form class="form-horizontal form-label-left">\
+                <div class="form-group">\
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">邮件类型</label>\
+                  <div class="col-md-6 col-sm-6 col-xs-12">\
+                    <select class="select2_group form-control" name="type">\
+                      <option value="10000">资源发放</option>\
+                      <option value="10001">系统公告</option>\
+                    </select>\
+                  </div>\
+                </div>\
+                <div class="form-group">\
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">区服</label>\
+                  <div class="col-md-6 col-sm-6 col-xs-12">\
+                    <select class="select2_group form-control" name="server_id">\
+                    </select>\
+                  </div>\
+                </div>\
+                <div class="form-group">\
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">标题</label>\
+                  <div class="col-md-6 col-sm-6 col-xs-12">\
+                    <input type="text" class="form-control" name="title" placeholder="不超过20个字符">\
+                  </div>\
+                </div>\
+                <div class="form-group">\
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">内容</label>\
+                  <div class="col-md-6 col-sm-6 col-xs-12">\
+                    <textarea id="message" required="required" class="form-control" name="data" data-parsley-trigger="keyup" data-parsley-minlength="30" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."\
+                    data-parsley-validation-threshold="10" placeholder="暂不支持换行 :-("></textarea>\
+                  </div>\
+                </div>\
+              </form>');
             break;
 
         }
@@ -260,11 +284,11 @@
 
         // 事件类型分支
         var arg_a_arr = body.find("input[name='privilege']");
-        var arg_a = [];
+        var arg_a = 0;
         $(arg_a_arr).each(function(index, ele){
           var curr = $(ele);
           if(curr.prop("checked") === true){
-            arg_a.push(curr.val());
+            arg_a += parseInt(curr.val());
           }
         });
 
@@ -302,37 +326,43 @@
           event: event,
           arg_a: arg_a,
           arg_b: arg_b,
-          str_b: str_b
+          str_b: ''
         }
 
         var select = $("#options");
         var val = select.val();
         var title = select.find("option[value='" + val + "']").text();
 
+        var len = str_b.length;
 
-        $.ajax({
-          url: concat({
-            prefix: 'jfjh/v1',
-            api: 'gm/trigger_event'
-          }),
-          method: 'get',
-          data: data,
-          dataType: 'json'
-        }).success(function(data) {
-          new PNotify({
-            title: title,
-            text: '提交成功',
-            type: 'success',
-            styling: 'bootstrap3'
-          });
-        }).fail(function(data) {
-          new PNotify({
-            title: title,
-            text: '提交失败',
-            type: 'error',
-            styling: 'bootstrap3'
-          });
-        });
+        for(var i = 0; i < len; i++){
+          data.str_b = str_b[i];
+          $.ajax({
+            url: concat({
+              prefix: 'jfjh/v1',
+              api: 'gm/trigger_event'
+            }),
+            method: 'get',
+            data: data,
+            dataType: 'json'
+          }).success(function(data) {
+            new PNotify({
+              title: title,
+              text: '提交成功',
+              type: 'success',
+              styling: 'bootstrap3'
+            });
+          }).fail(function(data) {
+            new PNotify({
+              title: title,
+              text: '提交失败',
+              type: 'error',
+              styling: 'bootstrap3'
+            });
+          });   
+        }
+
+
 
         $("#cancel").click();
       });

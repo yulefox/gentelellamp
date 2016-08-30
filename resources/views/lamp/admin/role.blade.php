@@ -99,6 +99,8 @@
 @endsection
 <!-- 本页面外部脚本 -->
 @section('script-import');
+<!-- mainjs -->
+<!-- <script src='/js/'></script> -->
 <!-- mock.js -->
 <script src="http://mockjs.com/dist/mock.js"></script>
 <!-- btn query -->

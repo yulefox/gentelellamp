@@ -1,7 +1,7 @@
 <!-- Smart Wizard -->
 <div id="deploy_form">
   <form class="form-horizontal form-label-left" method="POST" action="{{ url('/admin/mail') }}">
-    <div class="form-group">
+<!--     <div class="form-group">
       <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6 col-xs-12" role="tabpanel" data-example-id="togglable-tabs" style="height: 160px">
         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"> 单人</a>
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="form-group">
       <label class="control-label col-md-3 col-sm-3 col-xs-12">邮件类型</label>
       <div class="col-md-6 col-sm-6 col-xs-12">
