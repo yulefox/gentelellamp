@@ -144,7 +144,18 @@
       label.html('\
               <select id="options" class="select2_single form-control" name="event" tabindex="-1">\
                 <option value="900002">黑白名单(900002)</option>\
+<<<<<<< HEAD
                 <option value="900003">发送邮件(900003)</option>\
+=======
+                <option value="103001">发送邮件(103001)</option>\
+                <option value="200101">添加道具(200101)</option>\
+                <option value="600103">修改计数器(600103)</option>\
+                <option value="210101">添加任务(210101)</option>\
+                <option value="210103">设置任务状态(210103)</option>\
+                <option value="900101">重新加载角色(900101)</option>\
+                <option value="900202">恢复角色(900202)</option>\
+                <option value="900010">清除通天塔数据(900010)</option>\
+>>>>>>> f36e75345ad1e04d3043e8d58ff482b8bef43ae6
               </select>');
       $("#result_length").append(label);
 

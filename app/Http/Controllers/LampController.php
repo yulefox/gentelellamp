@@ -72,7 +72,16 @@ class LampController extends Controller
     public function getServers(Request $request)
     {
         return $this->invokeAPI('GET', 'apps', $request->all());
-        return $this->queryAgame($request, 'cfg_app_base');
+    }
+
+    public function triggerEvent(Request $request)
+    {
+        return $this->invokeAPI('GET', 'gm/trigger_event', $request->all());
+    }
+
+    public function addMail(Request $request)
+    {
+        return $this->invokeAPI('GET', 'gm/add_mail', $request->all());
     }
 
     public function doc($page)
