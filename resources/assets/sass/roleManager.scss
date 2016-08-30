@@ -26,11 +26,42 @@ select + .select2 {
 }
 
 @media (min-width: 991px){
-	.modal {
+	.nav-md .modal {
 		margin-left: 230px;
 		
 		.modal-dialog {
 			top: 30%;
+		}
+	}
+
+	.nav-sm .modal {
+		margin-left: 0px;
+		
+		.modal-dialog {
+			top: 30%;
+		}
+	}
+}
+
+#sendMail {
+	.form-group {
+		display: block;
+		margin-bottom: 10px;
+
+		label {
+			text-align: right;
+		}
+
+		select {
+			width: 100%;
+		}
+
+		#mailTitle {
+			width: 100%;
+		}
+
+		#mailMessage {
+			width: 100%;
 		}
 	}
 }

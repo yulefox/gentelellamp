@@ -144,9 +144,6 @@
       label.html('\
               <select id="options" class="select2_single form-control" name="event" tabindex="-1">\
                 <option value="900002">黑白名单(900002)</option>\
-<<<<<<< HEAD
-                <option value="900003">发送邮件(900003)</option>\
-=======
                 <option value="103001">发送邮件(103001)</option>\
                 <option value="200101">添加道具(200101)</option>\
                 <option value="600103">修改计数器(600103)</option>\
@@ -155,7 +152,6 @@
                 <option value="900101">重新加载角色(900101)</option>\
                 <option value="900202">恢复角色(900202)</option>\
                 <option value="900010">清除通天塔数据(900010)</option>\
->>>>>>> f36e75345ad1e04d3043e8d58ff482b8bef43ae6
               </select>');
       $("#result_length").append(label);
 
@@ -189,7 +185,10 @@
 
         body.empty();
 
+        $("#done").off('click');
+
         $("#myModalLabel").text(title);
+
         switch(val){
           case "900002":
             bodyContent = $('\
@@ -234,46 +233,214 @@
                   </label>\
                 </div>\
               </form>');
+            // 查询结果 执行/确定 按钮点击事件
+            $("#done").on("click", function(e){
+              var oid = null;
+              // 事件类型
+              var event = $("#options").val();
+              var body = $(".modal-body");
+
+              // 事件类型分支
+              var arg_a_arr = body.find("input[name='privilege']");
+              var arg_a = 0;
+              $(arg_a_arr).each(function(index, ele){
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  arg_a += parseInt(curr.val());
+                }
+              });
+
+              // 操作时间
+              var arg_b_arr = body.find("input[name='times']");
+              var arg_b = 300;
+              $(arg_b_arr).each(function(index, ele){
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  arg_b = $(ele).val();
+                }
+              });
+
+              // 被操作用户SID
+              var str_b_arr = $("#result input[name='table_records']");
+              var str_b = [];
+              var col_user = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'user'){
+                  col_user = curr.index();
+                  return ;
+                }
+              });
+              $(str_b_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  str_b.push(curr.closest('tr').find('td').eq(col_user).text());
+                }
+              });
+
+              //被操作用户的server_id
+              var server_id_arr = $("#result input[name='table_records']");
+              var server_id = [];
+              var col_server_id = 0;
+              $("#result_head th").each(function(index, ele) {
+                var curr = $(ele);
+                var txt = curr.text();
+                if(txt === 'server_id'){
+                  col_server_id = curr.index();
+                  return ;
+                }
+              });
+              $(server_id_arr).each(function(index,ele) {
+                var curr = $(ele);
+                if(curr.prop("checked") === true){
+                  server_id.push(curr.closest('tr').find('td').eq(col_server_id).text());
+                }
+              });
+
+              var data = {
+                oid: oid,
+                event: event,
+                arg_a: arg_a,
+                arg_b: arg_b,
+                str_b: '',
+                server_id: ''
+              }
+
+              var select = $("#options");
+              var val = select.val();
+              var title = select.find("option[value='" + val + "']").text();
+
+              var len = str_b.length;
+
+              for(var i = 0; i < len; i++){
+                data.str_b = str_b[i];
+                data.server_id = server_id[i];
+                $.ajax({
+                  url: concat({
+                    prefix: 'jfjh/v1',
+                    api: 'gm/add_namelist'
+                  }),
+                  method: 'get',
+                  data: data,
+                  dataType: 'json'
+                }).success(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交成功',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                  });
+                }).fail(function(data) {
+                  new PNotify({
+                    title: title,
+                    text: '提交失败',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                  });
+                });   
+              }
+
+
+
+              $("#cancel").click();
+            });
             break;
-          case '900003':
+          case '103001':
             bodyContent = $('\
               <h4>发送邮件</h4>\
-              <form class="form-horizontal form-label-left">\
-                <div class="form-group">\
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12">邮件类型</label>\
-                  <div class="col-md-6 col-sm-6 col-xs-12">\
-                    <select class="select2_group form-control" name="type">\
-                      <option value="10000">资源发放</option>\
-                      <option value="10001">系统公告</option>\
-                    </select>\
+              <form id="sendMail" class="form-horizontal form-label-left">\
+                  <div class="form-group">\
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">邮件类型</label>\
+                    <div class="col-md-6 col-sm-6 col-xs-12">\
+                      <select class="select2_group form-control" name="type">\
+                        <option value="10000">资源发放</option>\
+                        <option value="10001">系统公告</option>\
+                      </select>\
+                    </div>\
                   </div>\
-                </div>\
-                <div class="form-group">\
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12">区服</label>\
-                  <div class="col-md-6 col-sm-6 col-xs-12">\
-                    <select class="select2_group form-control" name="server_id">\
-                    </select>\
+                  <div class="form-group">\
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">标题</label>\
+                    <div class="col-md-6 col-sm-6 col-xs-12">\
+                      <input id="mailTitle" type="text" class="form-control" name="title" placeholder="不超过20个字符">\
+                    </div>\
                   </div>\
-                </div>\
-                <div class="form-group">\
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12">标题</label>\
-                  <div class="col-md-6 col-sm-6 col-xs-12">\
-                    <input type="text" class="form-control" name="title" placeholder="不超过20个字符">\
+                  <div class="form-group">\
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">内容</label>\
+                    <div class="col-md-6 col-sm-6 col-xs-12">\
+                      <textarea id="mailMessage" required="required" class="form-control" name="data" data-parsley-trigger="keyup" data-parsley-minlength="30" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."\
+                      data-parsley-validation-threshold="10" placeholder="暂不支持换行 :-("></textarea>\
+                    </div>\
                   </div>\
-                </div>\
-                <div class="form-group">\
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12">内容</label>\
-                  <div class="col-md-6 col-sm-6 col-xs-12">\
-                    <textarea id="message" required="required" class="form-control" name="data" data-parsley-trigger="keyup" data-parsley-minlength="30" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."\
-                    data-parsley-validation-threshold="10" placeholder="暂不支持换行 :-("></textarea>\
+                  <div class="ln_solid"></div>\
+                  <div class="form-group">\
+                    <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
+                      <select id="mailGroupA" class="select2_group form-control" name="idx_a">\
+                        <option value="501001">金币(501001)</option>\
+                        <option value="501002">钻石(501002)</option>\
+                      </select>\
+                    </div>\
+                    <div class="col-md-2 col-sm-2 col-xs-12">\
+                      <input type="text" class="form-control" name="num_a" id="inputSuccess3" placeholder="道具 A 数量">\
+                    </div>\
                   </div>\
-                </div>\
+                  <div class="form-group">\
+                    <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
+                      <select id="mailGroupB" class="select2_group form-control" name="idx_b">\
+                        <option value="501001">金币(501001)</option>\
+                        <option value="501002">钻石(501002)</option>\
+                      </select>\
+                    </div>\
+                    <div class="col-md-2 col-sm-2 col-xs-12">\
+                      <input type="text" class="form-control" name="num_b" id="inputSuccess3" placeholder="道具 B 数量">\
+                    </div>\
+                  </div>\
+                  <div class="form-group">\
+                    <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
+                      <select id="mailGroupC" class="select2_group form-control" name="grp_idx">\
+                        <option value="501001">金币(501001)</option>\
+                        <option value="501002">钻石(501002)</option>\
+                      </select>\
+                    </div>\
+                    <div class="col-md-2 col-sm-2 col-xs-12">\
+                      <input type="text" class="form-control" name="grp_num" id="inputSuccess3" placeholder="道具组数量">\
+                    </div>\
+                  </div>\
               </form>');
+
+            $("#done").on('click', function(e) {
+              
+              
+              $("#cancel").click();
+            });
+
             break;
 
         }
 
         body.append(bodyContent);
+
+        if($("select[name='type']")){
+          $("select[name='type']").select2({
+            placeholder: "资源发放",
+            allowClear: true
+          });
+        }
+
+        if($("#mailGroupA")){
+          $("#mailGroupA").select2({
+            placeholder: "请选择发放道具A",
+            allowClear: true
+          });
+          $("#mailGroupB").select2({
+            placeholder: "请选择发放道具B",
+            allowClear: true
+          });
+          $("#mailGroupC").select2({
+            placeholder: "请选择发放道具组",
+            allowClear: true
+          });
+        }
 
         if ($("input.flat")[0]) {
           $(document).ready(function () {
@@ -284,98 +451,6 @@
           });
         }
         
-      });
-
-      // 查询结果 执行/确定 按钮点击事件
-      $("#done").on("click", function(e){
-        var oid = null;
-        // 事件类型
-        var event = $("#options").val();
-        var body = $(".modal-body");
-
-        // 事件类型分支
-        var arg_a_arr = body.find("input[name='privilege']");
-        var arg_a = 0;
-        $(arg_a_arr).each(function(index, ele){
-          var curr = $(ele);
-          if(curr.prop("checked") === true){
-            arg_a += parseInt(curr.val());
-          }
-        });
-
-        // 操作时间
-        var arg_b_arr = body.find("input[name='times']");
-        var arg_b = 300;
-        $(arg_b_arr).each(function(index, ele){
-          var curr = $(ele);
-          if(curr.prop("checked") === true){
-            arg_b = $(ele).val();
-          }
-        });
-
-        // 被操作用户SID
-        var str_b_arr = $("#result input[name='table_records']");
-        var str_b = [];
-        var col_num = 0;
-        $("#result_head th").each(function(index, ele) {
-          var curr = $(ele);
-          var txt = curr.text();
-          if(txt === 'sid'){
-            col_num = curr.index();
-            return ;
-          }
-        });
-        $(str_b_arr).each(function(index,ele) {
-          var curr = $(ele);
-          if(curr.prop("checked") === true){
-            str_b.push(curr.closest('tr').find('td').eq(col_num).text());
-          }
-        });
-
-        var data = {
-          oid: oid,
-          event: event,
-          arg_a: arg_a,
-          arg_b: arg_b,
-          str_b: ''
-        }
-
-        var select = $("#options");
-        var val = select.val();
-        var title = select.find("option[value='" + val + "']").text();
-
-        var len = str_b.length;
-
-        for(var i = 0; i < len; i++){
-          data.str_b = str_b[i];
-          $.ajax({
-            url: concat({
-              prefix: 'jfjh/v1',
-              api: 'gm/trigger_event'
-            }),
-            method: 'get',
-            data: data,
-            dataType: 'json'
-          }).success(function(data) {
-            new PNotify({
-              title: title,
-              text: '提交成功',
-              type: 'success',
-              styling: 'bootstrap3'
-            });
-          }).fail(function(data) {
-            new PNotify({
-              title: title,
-              text: '提交失败',
-              type: 'error',
-              styling: 'bootstrap3'
-            });
-          });   
-        }
-
-
-
-        $("#cancel").click();
       });
 
       $(".select2_single").select2({
