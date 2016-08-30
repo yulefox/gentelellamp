@@ -48,6 +48,10 @@ select + .select2 {
 		display: block;
 		margin-bottom: 10px;
 
+		.form-control {
+			width: 100%;
+		}
+
 		label {
 			text-align: right;
 		}
@@ -63,6 +67,12 @@ select + .select2 {
 		#mailMessage {
 			width: 100%;
 		}
+	}
+}
+
+#addItem, #addCounter, #addTask, #setStatus {
+	.form-control {
+		width: 100%;
 	}
 }
 /*@media (min-width: 992px){
