@@ -1,4 +1,4 @@
-@extends('layouts.master', ['widgets' => ['smart_wizard', 'select2', 'icheck']])
+@extends('layouts.master', ['widgets' => ['smart_wizard', 'select2', 'icheck', 'pnotify']])
 @section('page-title', $title)
 @section('page-content')
 @include('widgets.panel', ['title' => $title, 'description' => '', 'content' => 'lamp.admin.event_form'])
@@ -99,4 +99,11 @@
   });
 </script>
 <!-- /Select2 -->
+@endsection
+
+@section('script-import')
+<script src='/js/event.js'></script>
+@endsection
+@section('css-import')
+<link rel="stylesheet" href="{{ elixir('css/allMail.css')}}">
 @endsection

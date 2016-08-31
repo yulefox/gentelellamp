@@ -1,4 +1,4 @@
-@extends('layouts.master', ['widgets' => ['smart_wizard', 'select2', 'icheck']])
+@extends('layouts.master', ['widgets' => ['smart_wizard', 'select2', 'icheck', 'pnotify']])
 @section('page-title', $title)
 @section('page-content')
 @include('widgets.panel', ['title' => $title, 'description' => '', 'content' => 'lamp.admin.mail_form'])

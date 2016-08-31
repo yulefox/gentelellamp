@@ -57,6 +57,14 @@ class Menu
                     'name' => 'role',
                     'display_name' => '玩家',
                 ],
+                [
+                    'name' => 'mail',
+                    'display_name' => '邮件',
+                ],
+                [
+                    'name' => 'event',
+                    'display_name' => '事件',
+                ],
             ],
         ],
         /*

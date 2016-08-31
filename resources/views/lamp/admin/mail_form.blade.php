@@ -95,10 +95,7 @@
     <div id="item">
       <div class="form-group">
         <div class="col-md-offset-3 col-md-4 col-sm-4 col-xs-12">
-          <select style='width:100%;' class="select2_group form-control" name="idx_a">
-            <option value="501001">金币(501001)</option>
-            <option value="501002">钻石(501002)</option>
-          </select>
+          <input type="text" class="form-control" placeholder="道具 A 编码" name="item_a">
         </div>
         <div class="col-md-2 col-sm-2 col-xs-12">
           <input type="text" class="form-control" name="num_a" id="inputSuccess3" placeholder="道具 A 数量">
@@ -106,10 +103,7 @@
       </div>
       <div class="form-group">
         <div class="col-md-offset-3 col-md-4 col-sm-4 col-xs-12">
-          <select style='width:100%;' class="select2_group form-control" name="idx_b">
-            <option value="501001">金币(501001)</option>
-            <option value="501002">钻石(501002)</option>
-          </select>
+          <input type="text" class="form-control" placeholder="道具 B 编码" name="item_b">
         </div>
         <div class="col-md-2 col-sm-2 col-xs-12">
           <input type="text" class="form-control" name="num_b" id="inputSuccess3" placeholder="道具 B 数量">
@@ -117,10 +111,7 @@
       </div>
       <div class="form-group">
         <div class="col-md-offset-3 col-md-4 col-sm-4 col-xs-12">
-          <select style='width:100%;' class="select2_group form-control" name="grp_idx">
-            <option value="501001">金币(501001)</option>
-            <option value="501002">钻石(501002)</option>
-          </select>
+          <input type="text" class="form-control" placeholder="道具组编码" name="item_grp">
         </div>
         <div class="col-md-2 col-sm-2 col-xs-12">
           <input type="text" class="form-control" name="grp_num" id="inputSuccess3" placeholder="道具组数量">

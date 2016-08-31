@@ -19,6 +19,7 @@ elixir(function(mix) {
     .browserify('app.js')
     .copy('resources/assets/js/btnQuery.js', 'public/js/btnQuery.js')
     .copy('resources/assets/js/allMail.js', 'public/js/allMail.js')
+    .copy('resources/assets/js/event.js', 'public/js/event.js')
     .version(['public/css/app.css', 'public/js/app.js', 'public/css/roleManager.css',
     	'public/css/allMail.css']);
     // .browserSync({

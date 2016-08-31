@@ -205,7 +205,7 @@
         switch(val){
           case "900002":
             bodyContent = $('\
-              <h4>请选择操作类型(可多选)</h4>\
+              <h4>操作类型(可多选)</h4>\
               <form class="form-horizontal form-label-left">\
                 <div style="width:100%;" class="form-group">\
                   <label class="control-label col-md-2 col-sm-2 col-xs-12">特权帐号\
@@ -224,7 +224,8 @@
                       <input value="8192" name="privilege" type="checkbox" class="flat">\
                   </label>\
                 </div>\
-                <h4>请选择操作时间</h4>\
+                <div class="ln_solid"></div>\
+                <h4>操作时间</h4>\
                 <div style="width:100%;" class="form-group">\
                   <label class="control-label col-md-2 col-sm-2 col-xs-12">永久\
                       <input value="0" name="times" type="radio" class="flat" checked="checked">\
