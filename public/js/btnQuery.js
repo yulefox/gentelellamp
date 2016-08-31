@@ -177,6 +177,19 @@
       $("#result_length").append(label);
 
       $("#confirm").on("click", function(e){
+        // 没选中角色气泡提示
+        var checkedRoles = $("#result input[name='table_records']:checked");
+        if(!checkedRoles.length){
+          new PNotify({
+                title: '警告',
+                text: '请勾选待操作的角色',
+                styling: 'bootstrap3'
+              });
+          return false;
+        }
+
+        alert
+
         var select = $("#options");
         var val = select.val();
         var title = select.find("option[value='" + val + "']").text();
@@ -375,7 +388,7 @@
                   <div class="ln_solid"></div>\
                   <div class="form-group">\
                     <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
-                      <input name="item_a" class="form-control" type="text" placeholder="请输入道具A的值" />\
+                      <input name="item_a" class="form-control" type="text" placeholder="道具 A 的编码" />\
                     </div>\
                     <div class="col-md-2 col-sm-2 col-xs-12">\
                       <input type="text" class="form-control" name="num_a" id="inputSuccess3" placeholder="道具 A 数量">\
@@ -383,7 +396,7 @@
                   </div>\
                   <div class="form-group">\
                     <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
-                      <input name="item_b" class="form-control" type="text" placeholder="请输入道具B的值" />\
+                      <input name="item_b" class="form-control" type="text" placeholder="道具 B 的编码" />\
                     </div>\
                     <div class="col-md-2 col-sm-2 col-xs-12">\
                       <input type="text" class="form-control" name="num_b" id="inputSuccess3" placeholder="道具 B 数量">\
@@ -391,7 +404,7 @@
                   </div>\
                   <div class="form-group">\
                     <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
-                      <input name="item_group" class="form-control" type="text" placeholder="请输入道具组的值" />\
+                      <input name="item_group" class="form-control" type="text" placeholder="道具组的编码" />\
                     </div>\
                     <div class="col-md-2 col-sm-2 col-xs-12">\
                       <input type="text" class="form-control" name="grp_num" id="inputSuccess3" placeholder="道具组数量">\
@@ -526,10 +539,10 @@
               <h4>添加道具</h4>\
               <form id="addItem" class="form-horizontal">\
                 <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
-                  <input placeholder="请输入道具名称" class="form-control" type="text" name="item_id" />\
+                  <input placeholder="道具名称" class="form-control" type="text" name="item_id" />\
                 </div>\
                 <div class="col-md-2 col-sm-2 col-xs-12">\
-                  <input placeholder="请输入道具数量" class="form-control" type="text" name="item_num" />\
+                  <input placeholder="道具数量" class="form-control" type="text" name="item_num" />\
                 </div>\
               </form>');
 
@@ -634,10 +647,10 @@
               <h4>修改计数器</h4>\
               <form id="addCounter" class="form-horizontal">\
                 <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">\
-                  <input placeholder="请输入计数器名称" class="form-control" type="text" name="counter_id" />\
+                  <input placeholder="计数器名称" class="form-control" type="text" name="counter_id" />\
                 </div>\
                 <div class="col-md-2 col-sm-2 col-xs-12">\
-                  <input placeholder="请输入计数器数值" class="form-control" type="text" name="counter_num" />\
+                  <input placeholder="计数器数值" class="form-control" type="text" name="counter_num" />\
                 </div>\
               </form>');
 
@@ -741,7 +754,7 @@
               <h4>添加任务</h4>\
               <form id="addTask" class="form-horizontal">\
                 <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6 col-xs-12">\
-                  <input placeholder="请输入任务名称" class="form-control" type="text" name="task_id" />\
+                  <input placeholder="任务名称" class="form-control" type="text" name="task_id" />\
                 </div>\
               </form>');
 
@@ -841,7 +854,7 @@
               <h4>设置任务状态</h4>\
               <form id="setStatus" class="form-horizontal">\
                 <div class="col-md-offset-1 col-sm-offset-1 col-md-4 col-sm-4 col-xs-12">\
-                  <input placeholder="请输入任务名称" class="form-control" type="text" name="task_id" />\
+                  <input placeholder="任务名称" class="form-control" type="text" name="task_id" />\
                 </div>\
                 <div class="col-md-4 col-sm-4 col-xs-12">\
                   <label class="control-label col-md-4 col-sm-4 col-xs-12">已接\

@@ -27,7 +27,7 @@
     <div class="form-group">
       <label class="control-label col-md-3 col-sm-3 col-xs-12">邮件类型</label>
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <select class="select2_group form-control" name="type">
+        <select id="mailType" class="select2_group form-control" name="type">
           <option value="10000">资源发放</option>
           <option value="10001">系统公告</option>
         </select>
@@ -92,43 +92,61 @@
       </div>
     </div>
     <div class="ln_solid"></div>
-    <div class="form-group">
-      <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">
-        <select class="select2_group form-control" name="idx_a">
-          <option value="501001">金币(501001)</option>
-          <option value="501002">钻石(501002)</option>
-        </select>
+    <div id="item">
+      <div class="form-group">
+        <div class="col-md-offset-3 col-md-4 col-sm-4 col-xs-12">
+          <select style='width:100%;' class="select2_group form-control" name="idx_a">
+            <option value="501001">金币(501001)</option>
+            <option value="501002">钻石(501002)</option>
+          </select>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12">
+          <input type="text" class="form-control" name="num_a" id="inputSuccess3" placeholder="道具 A 数量">
+        </div>
       </div>
-      <div class="col-md-2 col-sm-2 col-xs-12">
-        <input type="text" class="form-control" name="num_a" id="inputSuccess3" placeholder="道具 A 数量">
+      <div class="form-group">
+        <div class="col-md-offset-3 col-md-4 col-sm-4 col-xs-12">
+          <select style='width:100%;' class="select2_group form-control" name="idx_b">
+            <option value="501001">金币(501001)</option>
+            <option value="501002">钻石(501002)</option>
+          </select>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12">
+          <input type="text" class="form-control" name="num_b" id="inputSuccess3" placeholder="道具 B 数量">
+        </div>
       </div>
+      <div class="form-group">
+        <div class="col-md-offset-3 col-md-4 col-sm-4 col-xs-12">
+          <select style='width:100%;' class="select2_group form-control" name="grp_idx">
+            <option value="501001">金币(501001)</option>
+            <option value="501002">钻石(501002)</option>
+          </select>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12">
+          <input type="text" class="form-control" name="grp_num" id="inputSuccess3" placeholder="道具组数量">
+        </div>
+      </div>
+      <div class="ln_solid"></div>
     </div>
-    <div class="form-group">
-      <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">
-        <select class="select2_group form-control" name="idx_b">
-          <option value="501001">金币(501001)</option>
-          <option value="501002">钻石(501002)</option>
-        </select>
-      </div>
-      <div class="col-md-2 col-sm-2 col-xs-12">
-        <input type="text" class="form-control" name="num_b" id="inputSuccess3" placeholder="道具 B 数量">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-offset-3 col-sm-offset-3 col-md-4 col-sm-4 col-xs-12">
-        <select class="select2_group form-control" name="grp_idx">
-          <option value="501001">金币(501001)</option>
-          <option value="501002">钻石(501002)</option>
-        </select>
-      </div>
-      <div class="col-md-2 col-sm-2 col-xs-12">
-        <input type="text" class="form-control" name="grp_num" id="inputSuccess3" placeholder="道具组数量">
-      </div>
-    </div>
-    <div class="ln_solid"></div>
     <div class="form-group">
       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-        <button type="submit" class="btn btn-primary">发送</button>
+        <button id="confirm" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">确认</button>
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">信息确认</h4>
+              </div>
+              <div class="modal-body">
+              </div>
+              <div class="modal-footer">
+                <button id="cancel" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="done" type="button" class="btn btn-primary">发送</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </form>

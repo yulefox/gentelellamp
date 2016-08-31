@@ -100,3 +100,9 @@
 </script>
 <!-- /Select2 -->
 @endsection
+@section('script-import')
+<script src='/js/allMail.js'></script>
+@endsection
+@section('css-import')
+<link rel="stylesheet" href="{{ elixir('css/allMail.css')}}">
+@endsection
