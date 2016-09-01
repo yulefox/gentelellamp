@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Lamp\Transformers\PlayerTransformer;
-use DB;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -23,26 +22,8 @@ class PlayerController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->invokeAPI('GET', 'roles', $request->all());
-        $players = DB::connection('agame')->table('dat_role');
-        if ($request->role) {
-            if (is_numeric($request->role)) {
-                $players = $players
-                    ->where('id', $request->role)
-                    ->orWhere('sid', $request->role)
-                    ->orWhere('name', 'like', '%' . $request->role . '%')
-                    ->orWhere('user', 'like', '%' . $request->role . '%');
-            } else {
-                $players = $players
-                    ->Where('name', 'like', '%' . $request->role . '%')
-                    ->orWhere('user', 'like', '%' . $request->role . '%');
-            }
-        } else {
-            $players = $players->limit(100);
-        }
-        return response()->json([
-            'data' => $this->transformer->transformCollection($players->get()),
-        ]);
+        $res = $this->invokeAPI('GET', 'roles', $request->all());
+        return $res;
     }
 
     /**
