@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+#query {
+	margin-bottom: 0;
+}
+
+.input-group-addon {
+	background: #fff;
+}
+
+.select2 {
+	width: 100% !important;
+}
+
+.modal-dialog.modal-lg {
+	top: 30%;
+}
+
+@media (max-width: 768px){
+	.modal {
+		margin-left: 0;
+	}
+}
+
+@media (min-width: 991px){
+	.nav-md .modal {
+		margin-left: 230px;
+	}
+
+	.nav-sm .modal {
+		margin-left: 0px;
+	}
+}
+
+#item {
+	display: none;
+}
+
+#cancel {
+	margin-bottom: 0;
+}

@@ -49,6 +49,17 @@ class Menu
         ],
          */
         [
+            'name' => 'stat',
+            'display_name' => '统计',
+            'icon' => "fa fa-home",
+            'children' => [
+                [
+                    'name' => 'summary',
+                    'display_name' => '概况',
+                ],
+            ],
+        ],
+        [
             'name' => 'admin',
             'display_name' => '管理',
             'icon' => "fa fa-home",

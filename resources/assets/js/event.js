@@ -27,8 +27,6 @@ $(document).ready(function() {
 				str_a: arg_a
 			}
 
-			console.log(serverId);
-
 			function sendMsg() {
 				$.ajax({
 					url: concat({

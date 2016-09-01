@@ -44,6 +44,9 @@
   <link href="/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
   <link href="/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
   @endif
+  @if (in_array('daterangepicker', $widgets))
+  <link rel="stylesheet" href="/vendors/bootstrap-daterangepicker/daterangepicker.css">
+  @endif
 
   @yield('css-import')
 

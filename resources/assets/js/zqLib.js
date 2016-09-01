@@ -9,7 +9,7 @@ define(['jquery'], function($){
 		},
 		isArray: Array.isArray,
 		isObject: function(value) {
-			return value !== null && typeof value ==="object";
+			return value !== null && typeof value === "object";
 		},
 		isFunction: function(value) {
 			return typeof value === "function";

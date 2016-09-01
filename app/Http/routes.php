@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'jfjh/v1'], function () {
     Route::get('gm/add_namelist', 'LampController@addNamelist');
     Route::get('gm/trigger_event', 'LampController@triggerEvent');
     Route::get('gm/add_mail', 'LampController@addMail');
+    Route::get('stat/retention', 'LampController@retention');
 });
 
 Route::get('/gentelella/{page}', 'LampController@gentelella');
@@ -51,5 +52,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/mail', 'GMController@mail');
     Route::post('/admin/mail', 'GMController@postMail');
     Route::get('/admin/role', 'GMController@role');
+    Route::get('/stat/summary', 'LampController@summary');
     Route::get('/{sector}/{page}', 'LampController@index');
 });

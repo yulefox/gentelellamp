@@ -1,15 +1,15 @@
-define(['jquery'], function() {
-	function RoleTool() {}
-	RoleTool.prototype = {
+define(['jquery', 'zqLib'], function($, zq) {
+	function AdminTool() {}
+	AdminTool.prototype = {
 		generateUrl: function(obj) {
-			if(this.isObject(obj)){
+			if(zq.isObject(obj)){
 				return "/" + obj.prefix + "/" + obj.api;
 			}else{
-				throw("函数generateUrl的实参不是对象");
+				throw new Error("AdminTool.generateUrl()的实参不是对象");
 			}	
 		},
 		requestData: function(obj) {
-			if (this.isObject(obj)) {
+			if (zq.isObject(obj)) {
 				var dataObj = {};
             	var i = null;
 
@@ -18,8 +18,10 @@ define(['jquery'], function() {
             	}
             	return dataObj;
 			} else {
-				throw("函数requestData的实参不是对象");
+				throw new Error("AdminTool.requestData()的实参不是对象");
 			}
 		}
 	};
+
+	return new AdminTool();
 });

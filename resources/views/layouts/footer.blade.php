@@ -20,8 +20,7 @@
   <script src="/vendors/fastclick/lib/fastclick.js"></script>
   <!-- NProgress -->
   <script src="/vendors/nprogress/nprogress.js"></script>
-  <!-- requirejs -->
-  <!-- <script src='/vendors/requirejs/require.min.js'></script> -->
+  
 
   @if (in_array('icheck', $widgets))
   <!-- iCheck -->
@@ -45,6 +44,11 @@
   <script src="/vendors/jszip/dist/jszip.min.js"></script>
   <script src="/vendors/pdfmake/build/pdfmake.min.js"></script>
   <script src="/vendors/pdfmake/build/vfs_fonts.js"></script>
+  @endif
+
+  @if (in_array('daterangepicker', $widgets))
+  <script src="/vendors/moment/moment.js"></script>
+  <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
   @endif
 
   @if (in_array('smart_wizard', $widgets))

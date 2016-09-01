@@ -69,6 +69,15 @@ class LampController extends Controller
             ]);
     }
 
+    public function summary(Request $request)
+    {
+        return view('lamp.stat.summary',
+            [
+                'menus' => Menu::$menus,
+                'title' => '概况',
+            ]);
+    }
+
     public function getServers(Request $request)
     {
         return $this->invokeAPI('GET', 'apps', $request->all());
@@ -87,6 +96,11 @@ class LampController extends Controller
     public function addMail(Request $request)
     {
         return $this->invokeAPI('GET', 'gm/add_mail', $request->all());
+    }
+
+    public function retention(Request $request)
+    {
+        return $this->invokeAPI('GET', 'stat/retention', $request->all());
     }
 
     public function doc($page)

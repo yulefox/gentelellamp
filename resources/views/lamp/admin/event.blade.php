@@ -102,7 +102,7 @@
 @endsection
 
 @section('script-import')
-<script src='/js/event.js'></script>
+<script src='/vendors/requirejs/require.min.js' data-main='/js/admin/event/main'></script>
 @endsection
 @section('css-import')
 <link rel="stylesheet" href="{{ elixir('css/allMail.css')}}">
