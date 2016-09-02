@@ -20,11 +20,11 @@
 
   function sendMsg() {
     var date = $("#reservation").val();
-    var num = date.indexOf('-');
+    var num = date.indexOf(' - ');
 
     var database = {
-      date_a: date.slice(0, num-1).replace(/\//g, '-'),
-      date_b: date.slice(num+2).replace(/\//g, '-')
+      date_a: date.slice(0, num),
+      date_b: date.slice(num+3)
     };
     
     var serverId = $("select[name='server_id']").val();
@@ -123,11 +123,12 @@
   }
 
   $('#reservation').daterangepicker({
-    startDate: edYear + '/' + edMonth + '/' + edDate,
-    endDate: stYear + '/' + stMonth + '/' + stDate,
-    maxDate: stYear + '/' + stMonth + '/' + stDate,
+    startDate: edYear + '-' + edMonth + '-' + edDate,
+    endDate: stYear + '-' + stMonth + '-' + stDate,
+    maxDate: stYear + '-' + stMonth + '-' + stDate,
     locale: {
-      "format": 'YYYY/MM/DD',
+      "separator": " - ",
+      "format": 'YYYY-MM-DD',
       "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"],
       "monthNames": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
       "firstDay": 1,
