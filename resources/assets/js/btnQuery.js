@@ -61,7 +61,7 @@
       data: data,
       method: "get"
     }).success(function(data){
-      data = data.replace(/("id":\s*)(\d*)/, function(match, grp1, grp2) {
+      data = data.replace(/("id":\s*)(\d*)/g, function(match, grp1, grp2) {
         return grp1 + "\"" + grp2 + "\""
       });
       data = JSON.parse(data);
