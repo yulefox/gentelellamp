@@ -98,28 +98,28 @@
             <td>\
             </td>\
             <td>'
-              + retain[0] +
+              + (retain[1] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[1] + ')' +
             '</td>\
             <td>'
-              + retain[2] +
+              + (retain[2] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[2] + ')' +
             '</td>\
             <td>'
-              + retain[3] +
+              + (retain[3] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[3] + ')' +
             '</td>\
             <td>'
-              + retain[4] +
+              + (retain[4] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[4] + ')' +
             '</td>\
             <td>'
-              + retain[5] +
+              + (retain[5] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[5] + ')' +
             '</td>\
             <td>'
-              + retain[6] +
+              + (retain[6] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[6] + ')' +
             '</td>\
             <td>'
-              + retain[13] +
+              + (retain[13] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[13] + ')' +
             '</td>\
             <td>'
-              + retain[29] +
+              + (retain[29] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[29] + ')' +
             '</td>\
           </tr>'));
       }
