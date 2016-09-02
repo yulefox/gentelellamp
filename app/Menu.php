@@ -65,7 +65,7 @@ class Menu
             'icon' => "fa fa-home",
             'children' => [
                 [
-                    'name' => 'charge',
+                    'name' => 'order',
                     'display_name' => '充值',
                 ],
             ],
