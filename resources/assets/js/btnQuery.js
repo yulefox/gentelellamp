@@ -59,9 +59,12 @@
         api: "players"
       }),
       data: data,
-      dataType: "json",
       method: "get"
     }).success(function(data){
+      data = data.replace(/("id":\s*)(\d*)/, function(match, grp1, grp2) {
+        return grp1 + "\"" + grp2 + "\""
+      });
+      data = JSON.parse(data);
       // 如果已经查询过
       // 删除创建的查询结果box
       var box = $("#queryResult");

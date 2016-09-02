@@ -128,24 +128,6 @@
 
     });
 
-    var str = '';
-
-    if(database.server_id) {
-      str += '服务器数据';
-    }
-    if(database.channel) {
-      str += '渠道数据';
-    }
-    if(database.platform) {
-      str += '平台数据';
-    }
-
-    if(database.server_id && database.channel && database.platform) {
-      $('.x_title h2').text(str);
-    } else {
-      $('.x_title h2').text('基础数据');
-    }
-
     $("#cancel").click();
   }
 
@@ -154,7 +136,7 @@
     startDate: edMonth + '-' + edDate + '-' + edYear
   }, function(start, end, label) {
   });
-  
+
   sendMsg();
 
 

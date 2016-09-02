@@ -20,6 +20,11 @@ define(['jquery', 'zqLib'], function($, zq) {
 			} else {
 				throw new Error("AdminTool.requestData()的实参不是对象");
 			}
+		},
+		assert: function(condition, message) {
+			if(!condition){
+				throw new Error(message);
+			}
 		}
 	};
 
