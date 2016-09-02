@@ -82,12 +82,15 @@
             <td>'
               + curr.act +
             '</td>\
-            <td>\
-            </td>\
-            <td>\
-            </td>\
-            <td>\
-            </td>\
+            <td>'
+              + (curr.charge_cnt / curr.act * 100).toFixed(2) + '%' + ' (' + curr.charge_cnt + ')' +
+            '</td>\
+            <td>'
+              + curr.charge_a / 100 +
+            '</td>\
+            <td>'
+              + curr.charge_b +
+            '</td>\
             <td>'
               + (retain[1] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[1] + ')' +
             '</td>\
