@@ -133,6 +133,7 @@
 
   $('#reservation').daterangepicker({
     endDate: stMonth + '-' + stDate + '-' + stYear,
+    maxDate: stMonth + '/' + stDate + '/' + stYear,
     startDate: edMonth + '-' + edDate + '-' + edYear
   }, function(start, end, label) {
   });
