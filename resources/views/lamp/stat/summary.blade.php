@@ -56,7 +56,7 @@
 
       if(data === null){
          new PNotify({
-          title: '警告',
+          title: '查询失败',
           text: '当前时间范围内没有数据',
           styling: 'bootstrap3'
         });
@@ -119,6 +119,13 @@
       }
 
       $("#datatable").dataTable();
+
+      new PNotify({
+          title: '查询成功',
+          text: '数据已加载到表格中',
+          styling: 'bootstrap3',
+          type: 'success'
+      });
 
     });
 
