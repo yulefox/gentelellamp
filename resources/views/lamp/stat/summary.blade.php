@@ -22,18 +22,9 @@
     var date = $("#reservation").val();
     var num = date.indexOf('-');
 
-    var date_a = date.slice(0, num-1);
-    var date_b = date.slice(num+2);
-
-    var stNum = date_a.lastIndexOf('/');
-    var etNum = date_b.lastIndexOf('/');
-
-    date_a = (date_a.slice(stNum+1) + '/' + date_a.slice(0, stNum)).replace(/\//g, '-');
-    date_b = (date_b.slice(etNum+1) + '/' + date_b.slice(0, etNum)).replace(/\//g, '-');
-
     var database = {
-      date_a: date_a,
-      date_b: date_b
+      date_a: date.slice(0, num-1).replace(/\//g, '-'),
+      date_b: date.slice(num+2).replace(/\//g, '-')
     };
     
     var serverId = $("select[name='server_id']").val();
@@ -132,9 +123,17 @@
   }
 
   $('#reservation').daterangepicker({
-    endDate: stMonth + '-' + stDate + '-' + stYear,
-    maxDate: stMonth + '/' + stDate + '/' + stYear,
-    startDate: edMonth + '-' + edDate + '-' + edYear
+    startDate: edYear + '/' + edMonth + '/' + edDate,
+    endDate: stYear + '/' + stMonth + '/' + stDate,
+    maxDate: stYear + '/' + stMonth + '/' + stDate,
+    locale: {
+      "format": 'YYYY/MM/DD',
+      "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"],
+      "monthNames": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+      "firstDay": 1,
+      "applyLabel": "确定",
+      "cancelLabel": "取消",
+    }
   }, function(start, end, label) {
   });
 
