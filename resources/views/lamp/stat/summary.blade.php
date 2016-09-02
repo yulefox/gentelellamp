@@ -148,13 +148,15 @@
 
     $("#cancel").click();
   }
-  sendMsg();
 
   $('#reservation').daterangepicker({
     endDate: stMonth + '-' + stDate + '-' + stYear,
     startDate: edMonth + '-' + edDate + '-' + edYear
   }, function(start, end, label) {
   });
+  
+  sendMsg();
+
 
   $(".select2_single").select2({
     placeholder: "所有",
