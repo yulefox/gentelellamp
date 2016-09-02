@@ -75,9 +75,12 @@ select + .select2 {
 		width: 100%;
 	}
 }
-/*@media (min-width: 992px){
-	.modal {
-		margin-left: ;
-	}
+
+.dt-buttons.btn-group {
+	float: right;
+	margin-left: 15px;
 }
-*/
+
+#confirm {
+	margin-left: 10px;
+}

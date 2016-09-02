@@ -60,6 +60,17 @@ class Menu
             ],
         ],
         [
+            'name' => 'query',
+            'display_name' => '查询',
+            'icon' => "fa fa-home",
+            'children' => [
+                [
+                    'name' => 'charge',
+                    'display_name' => '充值',
+                ],
+            ],
+        ],
+        [
             'name' => 'admin',
             'display_name' => '管理',
             'icon' => "fa fa-home",

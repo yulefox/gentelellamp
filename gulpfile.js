@@ -22,6 +22,9 @@ elixir(function(mix) {
     .copy('resources/assets/js/allMail.js', 'public/js/allMail.js')
     .copy('resources/assets/js/event.js', 'public/js/event.js')
     .copy('resources/assets/js/admin/event/main.js', 'public/js/admin/event/main.js')
+    // 管理 --> 玩家
+    .copy('resources/assets/js/admin/role/main.js', 'public/js/admin/role/main.js')
+    .copy('resources/assets/js/admin/role/loadServers.js', 'public/js/admin/role/loadServers.js')
     // zq库函数
     .copy('resources/assets/js/admin/adminLib.js', 'public/js/admin/adminLib.js')
     .copy('resources/assets/js/zqLib.js', 'public/js/zqLib.js')

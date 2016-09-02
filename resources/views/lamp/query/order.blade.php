@@ -1,7 +1,7 @@
 @extends('layouts.master', ['widgets' => ['smart_wizard', 'select2', 'icheck', 'daterangepicker', 'datatable', 'pnotify']])
 @section('page-title', $title)
 @section('page-content')
-@include('widgets.panel', ['title' => '基础数据', 'description' => '', 'content' => 'lamp.stat.summary_form'])
+@include('widgets.panel', ['title' => $title, 'description' => '', 'content' => 'lamp.query.order_form'])
 @endsection
 @section('script-custom')
 <!-- jQuery Smart Wizard -->
@@ -43,16 +43,17 @@
 
 
     $.ajax({
-      url: '/jfjh/v1/stat/retention',
+      url: '/jfjh/v1/detail/orders',
       method: 'get',
-      data: database,  
-      dataType: 'json'
+      data: database
     }).success(function(data) {
       var table = $("#datatable").find("tbody");
 
       table.empty();
-
-      data = data.stat;
+      data = data.replace(/("rid":\s*)(\d*)/g, function(match, grp1, grp2) {
+        return grp1 + "\"" + grp2 + "\""
+      });
+      data = JSON.parse(data).order;
 
       if(data === null){
          new PNotify({
@@ -74,46 +75,46 @@
         table.append($('\
           <tr>\
             <td>'
-              + curr.date +
+              + curr.id +
             '</td>\
             <td>'
-              + curr.reg +
+              + curr.cid +
             '</td>\
             <td>'
-              + curr.act +
+              + curr.user +
             '</td>\
             <td>'
-              + (curr.charge_cnt / curr.act * 100).toFixed(2) + '%' + ' (' + curr.charge_cnt + ')' +
+              + curr.rid +
             '</td>\
             <td>'
-              + curr.charge_a / 100 +
+              + curr.lvl +
             '</td>\
             <td>'
-              + curr.charge_b +
+              + curr.vip +
             '</td>\
             <td>'
-              + (retain[1] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[1] + ')' +
+              + curr.totaltime +
             '</td>\
             <td>'
-              + (retain[2] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[2] + ')' +
+              + curr.price +
             '</td>\
             <td>'
-              + (retain[3] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[3] + ')' +
+              + curr.idx +
             '</td>\
             <td>'
-              + (retain[4] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[4] + ')' +
+              + curr.num +
             '</td>\
             <td>'
-              + (retain[5] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[5] + ')' +
+              + curr.code +
             '</td>\
             <td>'
-              + (retain[6] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[6] + ')' +
+              + curr.server +
             '</td>\
             <td>'
-              + (retain[13] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[13] + ')' +
+              + curr.req_time_s.slice(0, curr.req_time_s.indexOf('.')) +
             '</td>\
             <td>'
-              + (retain[29] / curr.reg * 100).toFixed(2) + '%' + ' (' + retain[29] + ')' +
+              + curr.res_time_s +
             '</td>\
           </tr>'));
       }
@@ -158,7 +159,7 @@
   }
 
   $('#reservation').daterangepicker({
-    startDate: edYear + '-' + edMonth + '-' + edDate,
+    startDate: stYear + '-' + stMonth + '-' + stDate,
     endDate: stYear + '-' + stMonth + '-' + stDate,
     maxDate: stYear + '-' + stMonth + '-' + stDate,
     locale: {

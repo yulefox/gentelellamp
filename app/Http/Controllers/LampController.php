@@ -78,6 +78,15 @@ class LampController extends Controller
             ]);
     }
 
+    public function order(Request $request)
+    {
+        return view('lamp.query.order',
+            [
+                'menus' => Menu::$menus,
+                'title' => '充值明细',
+            ]);
+    }
+
     public function getServers(Request $request)
     {
         return $this->invokeAPI('GET', 'apps', $request->all());
@@ -101,6 +110,11 @@ class LampController extends Controller
     public function retention(Request $request)
     {
         return $this->invokeAPI('GET', 'stat/retention', $request->all());
+    }
+
+    public function orderDetail(Request $request)
+    {
+        return $this->invokeAPI('GET', 'detail/orders', $request->all());
     }
 
     public function doc($page)

@@ -13,6 +13,9 @@ define(['jquery'], function($){
 		},
 		isFunction: function(value) {
 			return typeof value === "function";
+		},
+		isBoolean: function(value) {
+			return typeof value === "boolean";
 		}
 	};
 

@@ -135,7 +135,31 @@
         'order': [[ 1, 'asc' ]],
         'columnDefs': [
           { orderable: false, targets: [0] }
-        ]
+        ],
+        dom: "Bfrtip",
+        buttons: [
+          {
+            extend: "copy",
+            className: "btn-sm"
+          },
+          {
+            extend: "csv",
+            className: "btn-sm"
+          },
+          {
+            extend: "excel",
+            className: "btn-sm"
+          },
+          {
+            extend: "pdfHtml5",
+            className: "btn-sm"
+          },
+          {
+            extend: "print",
+            className: "btn-sm"
+          },
+        ],
+        responsive: true
       });
       $("#result").on('draw.dt', function() {
         $('input').iCheck({
@@ -156,7 +180,7 @@
                 <option value="900202">恢复角色(900202)</option>\
                 <option value="900010">清除通天塔数据(900010)</option>\
               </select>');
-      $("#result_length").append(label);
+      $("#result_filter").before(label);
 
       label = $('\
         <button id="confirm" type="button" style="margin-bottom:0;margin-right:0;" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">执行</button>\
@@ -177,7 +201,7 @@
             </div>\
           </div>\
         </div>');
-      $("#result_length").append(label);
+      $("#result_filter").before(label);
 
       $("#confirm").on("click", function(e){
         // 没选中角色气泡提示
