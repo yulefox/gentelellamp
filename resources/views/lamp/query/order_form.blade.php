@@ -24,7 +24,7 @@
                 <div class="ln_solid"></div>
                 <div class="clearfix">
                   <div class="col-md-offset-3 col-sm-offset-3 col-md-6 col-sm-6 col-xs-12">
-                    <select name="platform" class='select2_single form-control'> 
+                    <select name="platform" class='select2_single form-control'>
                       <option value="-1">平台</option>
                       <option value="800">泰文</option>
                       <option value="100">越狱</option>
@@ -70,8 +70,8 @@
       <th>累计在线时长</th>
       <th>充值金额</th>
       <th>充值项</th>
-      <th>充值结果</th>
       <th>充值份额</th>
+      <th>充值结果</th>
       <th>服务器</th>
       <th>请求时间</th>
       <th>响应时间</th>
