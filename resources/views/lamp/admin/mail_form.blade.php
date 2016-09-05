@@ -37,43 +37,10 @@
       <label class="control-label col-md-3 col-sm-3 col-xs-12">区服</label>
       <div class="col-md-6 col-sm-6 col-xs-12">
         <select class="select2_group form-control" name="server_id">
-          <optgroup label="越狱">
-            @for ($i = 1; $i < 50; $i++)
-            <option value={{ (1000 + $i) * 100 + 1 }}>越狱{{ $i }}服 ({{ (1000 + $i) * 100 + 1 }})</option>
+          <optgroup label="泰文">
+            @for ($i = 1; $i < 2; $i++)
+            <option value={{ (8000 + $i) * 100 + 1 }}>泰文{{ $i }}服 ({{ (8000 + $i) * 100 + 1 }})</option>
             @endfor
-          </optgroup>
-          <optgroup label="安卓">
-            @for ($i = 1; $i < 150; $i++)
-            <option value={{ 2000 + $i }}>安卓{{ $i }}服 ({{ 2000 + $i }})</option>
-            @endfor
-          </optgroup>
-          <optgroup label="应用宝">
-            @for ($i = 1; $i < 20; $i++)
-            <option value={{ 3000 + $i }}>疾风{{ $i }}服 ({{ 3000 + $i }})</option>
-            @endfor
-          </optgroup>
-          <optgroup label="IOS 正版">
-            @for ($i = 1; $i < 20; $i++)
-            <option value={{ 4000 + $i }}>剑魂{{ $i }}服 ({{ 4000 + $i }})</option>
-            @endfor
-          </optgroup>
-          <optgroup label="内网测试">
-            <option value="10101">内网|同步 (0101)</option>
-            <option value="10201">内网|Tuz (0102)</option>
-            <option value="10301">内网|Fox (0103)</option>
-            <option value="10401">内网|研发 (0104)</option>
-            <option value="10501">内网|zyx (0105)</option>
-            <option value="10601">内网|Lisp (0106)</option>
-            <option value="10701">内网|角色测试 (0107)</option>
-            <option value="20101">内网|越狱4.20 (0201)</option>
-            <option value="20201">内网|安卓4.20 (0202)</option>
-          </optgroup>
-          <optgroup label="外网测试">
-            <option value="115">审核(1.2.2) (0115)</option>
-            <option value="116">商务稳定 (0116)</option>
-            <option value="117">技术发布 (0117)</option>
-            <option value="118">商务海外 (0118)</option>
-            <option value="123">海外|泰国 (0123)</option>
           </optgroup>
         </select>
       </div>
